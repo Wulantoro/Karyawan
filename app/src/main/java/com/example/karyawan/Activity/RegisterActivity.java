@@ -1,14 +1,16 @@
-package com.example.karyawan;
+package com.example.karyawan.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class HomeActivity extends AppCompatActivity {
+import com.example.karyawan.R;
+
+public class RegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_register);
     }
 }
