@@ -6,11 +6,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:weightSum="10"
+    android:src="@drawable/bell"
     tools:context=".Activity.HomeActivity">
 
     <RelativeLayout
         android:layout_weight="1"
         android:layout_width="match_parent"
+        android:src="@drawable/bcg"
         android:layout_height="0dp">
 
         <TextView
@@ -19,6 +21,7 @@
             android:textColor="@color/white"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:src="@drawable/bell"
             android:textSize="34sp"
             android:text="APLIKASI KARYAWAN"/>
     </RelativeLayout>
@@ -57,7 +60,7 @@
 
                 <ImageView
                     android:id="@+id/ivuser"
-                    android:src="@drawable/user"
+                    android:src="@drawable/user4"
                     android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -98,7 +101,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:src="@drawable/user"
+                    android:src="@drawable/finger"
                     android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
