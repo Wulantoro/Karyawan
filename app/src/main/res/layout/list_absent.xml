@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    card_view:cardCornerRadius="6dp"
+    card_view:cardElevation="3dp"
+    card_view:cardUseCompatPadding="true">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <ImageView
+            android:id="@+id/ivprofil"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/user"/>
+
+        <!-- TextView Nama Mahasiwa -->
+        <TextView
+            android:id="@+id/tvnama"
+            android:layout_toRightOf="@id/ivprofil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="nama"/>
+
+        <TextView
+            android:id="@+id/tvtanggal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tvnama"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="180dp"
+            android:text="tanggal"/>
+
+        <!-- TextView Npm Mahasiswa -->
+        <TextView
+        android:id="@+id/tvjammasuk1"
+        android:layout_width="wrap_content"
+        android:layout_toRightOf="@id/ivprofil"
+        android:layout_height="wrap_content"
+            android:layout_below="@id/tvnama"
+        android:text="Jam Masuk : "/>
+
+        <TextView
+            android:id="@+id/tvjammasuk"
+            android:layout_width="wrap_content"
+            android:layout_toRightOf="@id/ivprofil"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvnama"
+            android:layout_marginLeft="100dp"
+            android:text="Jam Masuk "/>
+
+        <!-- TextView NoHp Mahasiswa -->
+
+        <TextView
+            android:id="@+id/tvjamkeluar1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/ivprofil"
+            android:layout_below="@id/tvjammasuk1"
+            android:text="Jam Keluar : "
+            />
+        <TextView
+            android:id="@+id/tvjamkeluar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/ivprofil"
+            android:layout_marginLeft="100dp"
+            android:layout_below="@id/tvjammasuk1"
+            android:text="Jam Keluar "
+            />
+
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
