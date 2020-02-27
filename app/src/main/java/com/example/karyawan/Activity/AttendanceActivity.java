@@ -15,7 +15,6 @@ import java.util.List;
 
 public class AttendanceActivity extends AppCompatActivity {
 
-    private TextView tvstatus;
 
     private RecyclerView recyclerView;
     private AbsentAdapter absentAdapter;
@@ -26,7 +25,6 @@ public class AttendanceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance);
-        tvstatus = findViewById(R.id.tvstatus);
 
         List<Absent> results = new ArrayList<>();
         results.add(absent);
@@ -42,11 +40,6 @@ public class AttendanceActivity extends AppCompatActivity {
 
         recyclerView.setAdapter(absentAdapter);
 
-        if (absent.getJamMasuk().equalsIgnoreCase("08:01")) {
-            tvstatus.setText("Terlambat");
-        }
-
-
     }
 
     void loadAbsent() {
@@ -55,7 +48,7 @@ public class AttendanceActivity extends AppCompatActivity {
         absentArrayList.add(new Absent("Dimas Maulana", "07:45", "17:01", "12-02-2020"));
         absentArrayList.add(new Absent("Dimas Maulana", "07:30", "17:15", "12-02-2020"));
         absentArrayList.add(new Absent("Dimas Maulana", "07:33", "17:30", "12-02-2020"));
-        absentArrayList.add(new Absent("Dimas Maulana", "08:01", "17:14", "12-02-2020"));
+        absentArrayList.add(new Absent("Dimas Maulana", "07:01", "17:14", "12-02-2020"));
 
     }
 }

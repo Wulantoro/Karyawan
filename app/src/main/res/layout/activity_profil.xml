@@ -9,33 +9,33 @@
     <RelativeLayout
         android:id="@+id/appBarProfil"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_150mdp">
+        android:layout_height="200dp">
 
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"/>
 
-        <TextView
-            android:id="@+id/tvUsernameProfil"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Username"
-            android:layout_marginTop="@dimen/_20mdp"
-            android:layout_marginLeft="@dimen/_20mdp"
-            android:textSize="@dimen/_15font_mdp"
-            android:textStyle="bold"
-            android:textColor="@color/white"/>
+<!--        <TextView-->
+<!--            android:id="@+id/tvUsernameProfil"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Username"-->
+<!--            android:layout_marginTop="25dp"-->
+<!--            android:layout_marginLeft="25dp"-->
+<!--            android:textSize="20dp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textColor="@color/white"/>-->
 
-        <TextView
-            android:id="@+id/tvEmailProfil"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tvUsernameProfil"
-            android:text="Email@gmail.com"
-            android:layout_marginLeft="@dimen/_20mdp"
-            android:textSize="@dimen/_8font_mdp"
-            android:src="@drawable/user"
-            android:textColor="@color/white"/>
+<!--        <TextView-->
+<!--            android:id="@+id/tvEmailProfil"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/tvUsernameProfil"-->
+<!--            android:text="Email@gmail.com"-->
+<!--            android:layout_marginLeft="@dimen/_20mdp"-->
+<!--            android:textSize="@dimen/_8font_mdp"-->
+<!--            android:src="@drawable/user"-->
+<!--            android:textColor="@color/white"/>-->
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgprofil"
@@ -46,8 +46,7 @@
             android:gravity="bottom"
             android:layout_marginTop="40dp"
             android:src="@drawable/user"
-            app:civ_border_color="@color/grey_300"
-            app:civ_border_width="2dp" />
+            />
 
     </RelativeLayout>
 
@@ -68,15 +67,15 @@
             >
 
             <ImageView
-                android:id="@+id/imgCollage"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:id="@+id/imguser"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginRight="20dp"
                 android:src="@drawable/user"
                 />
 
             <LinearLayout
-                android:layout_toRightOf="@id/imgCollage"
+                android:layout_toRightOf="@id/imguser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -84,14 +83,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pendidikan"
+                    android:textSize="14sp"
+                    android:text="Nama"
                     />
 
                 <TextView
-                    android:id="@+id/tvPendidikanProfil"
+                    android:id="@+id/tvnama"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pendidikan"
+                    android:text="nama saya"
                     android:textSize="12sp"
                     android:textStyle="bold"
                     android:textColor="@color/black"/>
@@ -121,15 +121,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="14sp"
                     android:text="Tanggal Lahir"
                     />
 
                 <TextView
-                    android:id="@+id/tvUlangtahunProfil"
+                    android:id="@+id/tvtgllahir2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="02 September 1990"
-                    android:textSize="12dp"
+                    android:textSize="12sp"
                     android:textStyle="bold"
                     android:textColor="@color/black"/>
             </LinearLayout>
@@ -137,20 +138,21 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_marginTop="@dimen/_15mdp"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp">
 
             <ImageView
-                android:id="@+id/imgCountry"
+                android:id="@+id/imgjnskelamin"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginRight="20dp"
+                android:src="@drawable/gender"
                 />
 
             <LinearLayout
-                android:layout_toRightOf="@id/imgCountry"
+                android:layout_toRightOf="@id/imgjnskelamin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -158,14 +160,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Kebangsaan"
+                    android:textSize="14sp"
+                    android:text="Jenis Kelamin"
                    />
 
                 <TextView
-                    android:id="@+id/tvCountryProfil"
+                    android:id="@+id/tvjnskelamin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Indonesia"
+                    android:text="laki-laki"
                     android:textSize="12sp"
                     android:textStyle="bold"
                     android:textColor="@color/black"/>
@@ -180,14 +183,14 @@
             android:layout_marginLeft="20dp">
 
             <ImageView
-                android:id="@+id/imgAlamat"
+                android:id="@+id/imgalamat"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/address"/>
 
             <LinearLayout
-                android:layout_toRightOf="@id/imgAlamat"
+                android:layout_toRightOf="@id/imgalamat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -195,11 +198,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="14sp"
                     android:text="Alamat"
                     />
 
                 <TextView
-                    android:id="@+id/tvAlamatProfil"
+                    android:id="@+id/tvalamat2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Jl.Sudirman no 190"
@@ -217,14 +221,14 @@
             android:layout_marginLeft="20dp">
 
             <ImageView
-                android:id="@+id/imgHandphone"
+                android:id="@+id/imgtelp"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/smartphone"/>
 
             <LinearLayout
-                android:layout_toRightOf="@id/imgHandphone"
+                android:layout_toRightOf="@id/imgtelp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -232,11 +236,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="14sp"
                     android:text="No. Telphone"
                     />
 
                 <TextView
-                    android:id="@+id/tvtelp"
+                    android:id="@+id/tvtelp1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="08908090800"
@@ -249,7 +254,7 @@
 
         <ImageView
             android:id="@+id/imglogout"
-            android:layout_marginTop="@dimen/_30mdp"
+            android:layout_marginTop="35dp"
             android:layout_gravity="center"
             android:background="@drawable/ic_logout"
             android:layout_width="30dp"
