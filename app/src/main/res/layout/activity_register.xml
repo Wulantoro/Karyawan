@@ -46,37 +46,37 @@
         <LinearLayout
             android:id="@+id/LlBirthday"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_40mdp"
+            android:layout_height="45dp"
             android:weightSum="3"
             android:background="@drawable/bordertrans"
             android:layout_below="@id/et1"
             android:layout_marginTop="15dp"
-            android:layout_marginHorizontal="@dimen/_10mdp"
+            android:layout_marginHorizontal="15dp"
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/etTglBirthday"
+                android:id="@+id/ettgl"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:background="@null"
                 android:inputType="date"
-                android:textSize="@dimen/_13font_mdp"
-                android:layout_marginLeft="@dimen/_5mdp"
+                android:textSize="14sp"
+                android:layout_marginLeft="10sp"
                 android:hint="dd/mm/yyy"/>
 
             <View
                 android:id="@+id/v3"
-                android:layout_width="@dimen/_1mdp"
+                android:layout_width="2dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_5mdp"
+                android:layout_marginLeft="10dp"
                 android:background="@color/grey_400" />
 
             <ImageView
-                android:id="@+id/imgTgl"
-                android:layout_width="@dimen/_25mdp"
-                android:layout_height="@dimen/_25mdp"
-                android:layout_margin="@dimen/_5mdp"
+                android:id="@+id/imgtgl"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="10dp"
                 android:background="@drawable/ic_calendar" />
 
         </LinearLayout>
@@ -94,7 +94,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Jenis Kelamin"
-                android:textSize="@dimen/_14font_mdp"/>
+                android:textSize="15sp"/>
         <RadioGroup
             android:padding="5px"
             android:layout_height="wrap_content"

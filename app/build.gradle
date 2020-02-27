@@ -27,6 +27,8 @@ dependencies {
     //tambahan
     implementation 'com.android.support:appcompat-v7:29.0.0'
     //design widget
+//    implementation 'com.github.anggastudio:SpinnerPickerDialog:1.0.1'
+    implementation 'com.github.anggastudio:SpinnerPickerDialog:1.0.1'
     implementation 'com.android.support:design:29.0.0'
     implementation 'androidx.gridlayout:gridlayout:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
