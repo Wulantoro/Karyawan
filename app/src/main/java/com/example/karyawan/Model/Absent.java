@@ -1,4 +1,4 @@
-package com.example.karyawan.Activity.Model;
+package com.example.karyawan.Model;
 
 public class Absent {
 
