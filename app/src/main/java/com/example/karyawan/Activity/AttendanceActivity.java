@@ -7,7 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.example.karyawan.Activity.Model.Absent;
+import com.example.karyawan.Model.Absent;
+import com.example.karyawan.Adapter.AbsentAdapter;
 import com.example.karyawan.R;
 
 import java.util.ArrayList;
