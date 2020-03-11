@@ -1,4 +1,4 @@
-package com.example.karyawan.Activity;
+package com.example.karyawan.Adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.karyawan.Activity.Model.Absent;
+import com.example.karyawan.Model.Absent;
 import com.example.karyawan.R;
 
 import java.util.ArrayList;
