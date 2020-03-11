@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Logging in.....");
-        showDialog();
+//        showDialog();
 
         final JSONObject jsonObject = new JSONObject();
         try {
