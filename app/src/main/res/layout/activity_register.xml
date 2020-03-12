@@ -43,6 +43,23 @@
                 android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <RelativeLayout
+            android:id="@+id/relCat"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40mdp"
+            android:layout_marginHorizontal="@dimen/_10mdp"
+            android:layout_marginTop="@dimen/_15mdp"
+            android:background="@drawable/bordertrans">
+
+            <Spinner
+                android:id="@+id/tags1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:spinnerMode="dropdown"/>
+
+        </RelativeLayout>
+
         <LinearLayout
             android:id="@+id/LlBirthday"
             android:layout_width="match_parent"
