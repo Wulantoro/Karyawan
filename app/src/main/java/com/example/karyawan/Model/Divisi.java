@@ -1,4 +1,4 @@
-package com.example.karyawan.Utils;
+package com.example.karyawan.Model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -6,8 +6,8 @@ import android.os.Parcelable;
 public class Divisi implements Parcelable
 {
 
-    private String idDivisi;
-    private String nmDivisi;
+    private String id_divisi;
+    private String nm_divisi;
     public final static Parcelable.Creator<Divisi> CREATOR = new Creator<Divisi>() {
 
 
@@ -26,32 +26,32 @@ public class Divisi implements Parcelable
             ;
 
     protected Divisi(Parcel in) {
-        this.idDivisi = ((String) in.readValue((String.class.getClassLoader())));
-        this.nmDivisi = ((String) in.readValue((String.class.getClassLoader())));
+        this.id_divisi = ((String) in.readValue((String.class.getClassLoader())));
+        this.nm_divisi = ((String) in.readValue((String.class.getClassLoader())));
     }
 
     public Divisi() {
     }
 
     public String getIdDivisi() {
-        return idDivisi;
+        return id_divisi;
     }
 
     public void setIdDivisi(String idDivisi) {
-        this.idDivisi = idDivisi;
+        this.id_divisi = idDivisi;
     }
 
     public String getNmDivisi() {
-        return nmDivisi;
+        return nm_divisi;
     }
 
     public void setNmDivisi(String nmDivisi) {
-        this.nmDivisi = nmDivisi;
+        this.nm_divisi = nmDivisi;
     }
 
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(idDivisi);
-        dest.writeValue(nmDivisi);
+        dest.writeValue(id_divisi);
+        dest.writeValue(nm_divisi);
     }
 
     public int describeContents() {

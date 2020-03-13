@@ -7,8 +7,11 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,7 +21,7 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.anggastudio.spinnerpickerdialog.SpinnerPickerDialog;
 import com.example.karyawan.R;
-import com.example.karyawan.Utils.Divisi;
+import com.example.karyawan.Model.Divisi;
 import com.example.karyawan.Utils.GlobalVars;
 import com.google.gson.Gson;
 
@@ -38,6 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private ImageView imgtgl;
     private TextView ettgl;
+    private Spinner spdivisi;
 
     private Gson gson;
 
@@ -51,6 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
         gson = new Gson();
         imgtgl = findViewById(R.id.imgtgl);
         ettgl = findViewById(R.id.ettgl);
+        spdivisi = findViewById(R.id.spdivisi);
 
         DateFormat simpleDate;
         Date date;
@@ -65,11 +70,16 @@ public class RegisterActivity extends AppCompatActivity {
                 DateSpinner();
             }
         });
+
+        //get Divisi
+        loadDiv();
     }
 
     private void loadDiv() {
 
-        AndroidNetworking.post(GlobalVars.BASE_IP + "index.php/divisi")
+        Log.e(TAG, "ip >> " + GlobalVars.BASE_IP + "divisi");
+
+        AndroidNetworking.post(GlobalVars.BASE_IP + "divisi")
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
@@ -78,13 +88,14 @@ public class RegisterActivity extends AppCompatActivity {
                         List<Divisi> result = new ArrayList<>();
 
                         try {
+                            Log.e(TAG, "divisi = " + response.toString(1));
                             if (result != null)
                                 result.clear();
 
-                            String message = response.getString("message")
+                            String message = response.getString("message");
 
                             if (message.equals("Divisi were found")) {
-                                String records response.getString("data");
+                                String records = response.getString("data");
 
                                 JSONArray dataArr = new JSONArray(records);
 
@@ -106,7 +117,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(ANError anError) {
-                        Toast.makeText(getApplicationContext(), "ANError "+anError, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "ANError "+ anError, Toast.LENGTH_SHORT).show();
 
                     }
                 });
@@ -114,8 +125,39 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    private String div;
     private void setDivisi(final List<Divisi> divisiList) {
-        ArrayAdapter<Divisi> voteTypeAdapter = new ArrayAdapter<Divisi>(getApplicationContext(), R.layout)
+        ArrayAdapter<Divisi> voteTypeAdapter = new ArrayAdapter<Divisi>(getApplicationContext(), R.layout.divisi_spinner, divisiList) {
+
+            public View getDropDownView(int position, View convertView, ViewGroup parent) {
+                TextView textView = (TextView) super.getDropDownView(position,convertView, parent);
+                textView.setText(divisiList.get(position).getNmDivisi());
+
+                return textView;
+            }
+
+            public View getView(int position, View convertView, ViewGroup parent) {
+                TextView textView = (TextView) super.getView(position, convertView, parent);
+                textView.setText(divisiList.get(position).getNmDivisi());
+
+                return textView;
+            }
+        };
+
+        spdivisi.setAdapter(voteTypeAdapter);
+        spdivisi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                div = divisiList.get(i).getNmDivisi().toString();
+                Log.e(TAG, "div = " + divisiList.get(i).getNmDivisi());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
     }
 
     private void DateSpinner() {

@@ -52,7 +52,7 @@
             android:background="@drawable/bordertrans">
 
             <Spinner
-                android:id="@+id/tags1"
+                android:id="@+id/spdivisi"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
