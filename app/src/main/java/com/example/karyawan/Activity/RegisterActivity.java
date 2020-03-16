@@ -79,7 +79,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         Log.e(TAG, "ip >> " + GlobalVars.BASE_IP + "divisi");
 
-        AndroidNetworking.post(GlobalVars.BASE_IP + "divisi")
+        AndroidNetworking.get(GlobalVars.BASE_IP + "divisi")
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
@@ -87,10 +87,11 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         List<Divisi> result = new ArrayList<>();
 
+                        if (result != null)
+                            result.clear();
+
                         try {
                             Log.e(TAG, "divisi = " + response.toString(1));
-                            if (result != null)
-                                result.clear();
 
                             String message = response.getString("message");
 
