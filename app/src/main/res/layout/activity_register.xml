@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".Activity.RegisterActivity">
 
+    <include layout="@layout/view_image_picker"/>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -39,7 +41,7 @@
                 android:id="@+id/imgAdd"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:layout_marginLeft="130dp"
+                android:layout_marginLeft="120dp"
                 android:layout_below="@id/imgUser"
                 android:background="@drawable/ic_folder_black_24dp"/>
 
@@ -47,7 +49,7 @@
                 android:id="@+id/ivCamera"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:layout_marginLeft="70dp"
+                android:layout_marginLeft="40dp"
                 android:layout_toRightOf="@id/imgAdd"
                 android:layout_below="@id/imgUser"
                 android:background="@drawable/ic_camera" />
@@ -60,7 +62,7 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/nama"
+                android:id="@+id/etnama"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="flagNoExtractUi"
@@ -73,7 +75,7 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/et1"
+                android:id="@+id/etusername"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="flagNoExtractUi"
@@ -104,7 +106,7 @@
             android:layout_height="45dp"
             android:weightSum="3"
             android:background="@drawable/bordertrans"
-            android:layout_below="@id/et1"
+            android:layout_below="@id/etusername"
             android:layout_marginTop="15dp"
             android:layout_marginHorizontal="15dp"
             android:orientation="horizontal">
