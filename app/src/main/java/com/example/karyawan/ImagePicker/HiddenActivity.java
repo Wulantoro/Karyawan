@@ -1,7 +1,10 @@
 package com.example.karyawan.ImagePicker;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import android.Manifest;
-import android.app.Activity;
 import android.content.ClipData;
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -12,15 +15,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+import com.example.karyawan.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-public class HiddenActivity extends Activity {
+public class HiddenActivity extends AppCompatActivity {
 
     private static final String KEY_CAMERA_PICTURE_URL = "cameraPictureUrl";
 
@@ -152,6 +154,4 @@ public class HiddenActivity extends Activity {
         cv.put(MediaStore.Images.Media.TITLE, timeStamp);
         return contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, cv);
     }
-
-
 }

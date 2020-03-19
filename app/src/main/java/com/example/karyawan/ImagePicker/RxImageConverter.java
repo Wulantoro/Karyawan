@@ -6,6 +6,8 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
 
+import com.example.karyawan.Activity.RegisterActivity;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -21,12 +23,12 @@ import io.reactivex.schedulers.Schedulers;
 
 public class RxImageConverter {
 
-    public static Observable<File> uriToFile(final Context context, final Uri uri, final File file) {
+    public static Observable<File> uriToFile(Context context, final Uri uri, final File file) {
         return Observable.create(new ObservableOnSubscribe<File>() {
             @Override
             public void subscribe(@NonNull ObservableEmitter<File> emitter) throws Exception {
                 try {
-                    InputStream inputStream = context.getContentResolver().openInputStream(uri);
+                    InputStream inputStream =  context.getContentResolver().openInputStream(uri);
                     copyInputStreamToFile(inputStream, file);
                     emitter.onNext(file);
                     emitter.onComplete();
