@@ -19,6 +19,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -75,6 +77,9 @@ public class RegisterActivity extends AppCompatActivity {
     private ImageView imgtgl, imgUser;
     private TextView ettgl;
     private Spinner spdivisi;
+    private Button btnsimpan;
+    private EditText etnama, etusername, ettelp;
+    private EditText etalamat, etpassword;
 
     private static final int PICK_IMAGE_FILE = 1;
     private ImageView imgAdd, ivCamera;
@@ -106,6 +111,19 @@ public class RegisterActivity extends AppCompatActivity {
         imgAdd = findViewById(R.id.imgAdd);
         ivCamera = findViewById(R.id.ivCamera);
         imgUser = findViewById(R.id.imgUser);
+        btnsimpan = findViewById(R.id.btnsimpan);
+        etnama = findViewById(R.id.etnama);
+        etusername = findViewById(R.id.etusername);
+        ettelp = findViewById(R.id.ettelp);
+        etalamat = findViewById(R.id.etalamat);
+        etpassword = findViewById(R.id.etpassword);
+
+        btnsimpan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                simpanProfil();
+            }
+        });
 
         ivCamera.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,14 +146,6 @@ public class RegisterActivity extends AppCompatActivity {
             RxImagePicker.with(RegisterActivity.this).getActiveSubscription().subscribe(this::onImagePicked);
         }
         id_krw = valueOf(System.currentTimeMillis());
-
-
-
-        DateFormat simpleDate;
-        Date date;
-
-        date = Calendar.getInstance().getTime();
-        simpleDate = new SimpleDateFormat("ddMMyyyy");
 
         //Function Tanggal
         imgtgl.setOnClickListener(new View.OnClickListener() {
@@ -391,12 +401,20 @@ public class RegisterActivity extends AppCompatActivity {
         spinnerPickerDialog.setOnDialogListener(new SpinnerPickerDialog.OnDialogListener() {
             @Override
             public void onSetDate(int month, int day, int year) {
+
+                DateFormat simpleDate;
+                Date date1;
+
+                date1 = Calendar.getInstance().getTime();
+                simpleDate = new SimpleDateFormat("ddMMyyyy");
+
                 month = month + 1;
 //                String date = day + "-" + month + "-" + year;
                 String date = year + "-" + month + "-" + day;
                 DateFormat dp_medium = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.UK);
                 String dp_medium_uk_strg = dp_medium.format(Calendar.getInstance().getTime());
                 ettgl.setText(date);
+//                ettgl.setText((CharSequence) simpleDate);
             }
 
             @Override
@@ -411,5 +429,56 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         spinnerPickerDialog.show(this.getSupportFragmentManager(), "");
+    }
+
+    public void simpanProfil() {
+        JSONObject jsonObject = new JSONObject();
+
+        try {
+            JSONArray newArr = new JSONArray();
+            jsonObject.put("nama_krw", etnama.getText().toString());
+            jsonObject.put("username_krw", etusername.getText().toString());
+            jsonObject.put("password", etpassword.getText().toString());
+            jsonObject.put("divisi", spdivisi.getItemAtPosition(spdivisi.getSelectedItemPosition()).toString());
+            jsonObject.put("telp_krw", ettelp.getText().toString());
+            jsonObject.put("alamat_krw", etalamat.getText().toString());
+            jsonObject.put("gender_krw", "LAKI - LAKI");
+            jsonObject.put("tgllahir_krw", ettgl.getText().toString());
+            jsonObject.put("image_name", id_krw+photoExt);
+            jsonObject.put("image_file", encodePhoto);
+
+            newArr.put(jsonObject);
+
+            Log.e(TAG, "coba input = " + newArr.toString(1));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        AndroidNetworking.post(GlobalVars.BASE_IP + "karyawan")
+                .addJSONObjectBody(jsonObject)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            String message = response.getString("message");
+                            Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_SHORT).show();
+
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), "JSONExceptions" + e, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        Toast.makeText(getApplicationContext(), "Gagal menambah data", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
     }
 }

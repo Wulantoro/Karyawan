@@ -226,7 +226,7 @@
             >
 
             <Button
-                android:id="@+id/btnLogin"
+                android:id="@+id/btnsimpan"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
                 android:layout_margin="22dp"

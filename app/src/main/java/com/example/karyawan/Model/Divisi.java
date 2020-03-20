@@ -58,4 +58,8 @@ public class Divisi implements Parcelable
         return 0;
     }
 
+    public String toString() {
+        return this.nm_divisi;
+    }
+
 }
