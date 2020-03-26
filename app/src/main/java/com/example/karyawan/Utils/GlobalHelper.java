@@ -133,7 +133,6 @@ public class GlobalHelper {
     }
 
     public static Uri convertFileToContentUri(Context context, File file) throws Exception {
-        //Uri localImageUri = Uri.fromFile(localImageFile); // Not suitable as it's not a content Uri
         ContentResolver cr = context.getContentResolver();
         String imagePath = file.getAbsolutePath();
         String imageName = null;
@@ -163,7 +162,6 @@ public class GlobalHelper {
             System.out.println("File Not Found.");
             e.printStackTrace();
         } catch (IOException e1) {
-            //System.out.println("Error Reading The File.");
             e1.printStackTrace();
         }
 
@@ -177,7 +175,7 @@ public class GlobalHelper {
         String base64String = "";
         if (byteFileArray.length > 0) {
             base64String = Base64.encodeToString(byteFileArray, Base64.NO_WRAP);
-            //Log.i("File Base64 string", "IMAGE PARSE ==>" + base64String);
+
         }
 
         return base64String;
@@ -216,14 +214,9 @@ public class GlobalHelper {
             File outputFile = new File(outDir, fileName);
             writer = new BufferedWriter(new FileWriter(outputFile));
             writer.write(data);
-//            Toast.makeText(context.getApplicationContext(),
-//                    "Report successfully saved to: " + outputFile.getAbsolutePath(),
-//                    Toast.LENGTH_LONG).show();
             writer.close();
         } catch (IOException e) {
             Log.w("eztt", e.getMessage(), e);
-//            Toast.makeText(context, e.getMessage() + " Unable to write to external storage.",
-//                    Toast.LENGTH_LONG).show();
         }
 
     }

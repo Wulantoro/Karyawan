@@ -33,7 +33,8 @@ public class HomeActivity extends AppCompatActivity {
         ivabsent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), AttendanceActivity.class);
+//                Intent intent = new Intent(getApplicationContext(), AttendanceActivity.class);
+                Intent intent = new Intent(getApplicationContext(), AbsenActivity.class);
                 startActivity(intent);
             }
         });
