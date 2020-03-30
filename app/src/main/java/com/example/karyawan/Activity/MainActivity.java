@@ -3,6 +3,7 @@ package com.example.karyawan.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -32,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvDaftar;
     private TextView etusername;
     private TextView etpassword;
+    public SharedPreferences pref, prf;
+
+    String id_krw;
 
     private Gson gson;
 
@@ -104,6 +108,11 @@ public class MainActivity extends AppCompatActivity {
                                             startActivity(intent);
                                         } else {
                                             Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                                            pref = getSharedPreferences("Id_krw", MODE_PRIVATE);
+                                            id_krw = karyawan.getIdKrw();
+                                            SharedPreferences.Editor editor = pref.edit();
+                                            editor.putString("id_krw", id_krw);
+                                            editor.commit();
                                             startActivity(intent);
                                         }
 
@@ -125,6 +134,5 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
-
     }
 }
