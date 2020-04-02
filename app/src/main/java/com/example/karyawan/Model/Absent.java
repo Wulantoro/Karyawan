@@ -6,12 +6,12 @@ import android.os.Parcelable;
 public class Absent implements Parcelable
 {
 
-    private String username_Krw;
-    private String image_File;
-    private String jam_Masuk;
-    private String jam_Keluar;
-    private String status_Absn;
-    private String tgl_Absen;
+    private String username_krw;
+    private String image_file;
+    private String jam_masuk;
+    private String jam_keluar;
+    private String status_absn;
+    private String tgl_absen;
     public final static Parcelable.Creator<Absent> CREATOR = new Parcelable.Creator<Absent>() {
 
 
@@ -30,72 +30,72 @@ public class Absent implements Parcelable
             ;
 
     protected Absent(Parcel in) {
-        this.username_Krw = ((String) in.readValue((String.class.getClassLoader())));
-        this.image_File = ((String) in.readValue((String.class.getClassLoader())));
-        this.jam_Masuk = ((String) in.readValue((String.class.getClassLoader())));
-        this.jam_Keluar = ((String) in.readValue((String.class.getClassLoader())));
-        this.status_Absn = ((String) in.readValue((String.class.getClassLoader())));
-        this.tgl_Absen = ((String) in.readValue((String.class.getClassLoader())));
+        this.username_krw = ((String) in.readValue((String.class.getClassLoader())));
+        this.image_file = ((String) in.readValue((String.class.getClassLoader())));
+        this.jam_masuk = ((String) in.readValue((String.class.getClassLoader())));
+        this.jam_keluar = ((String) in.readValue((String.class.getClassLoader())));
+        this.status_absn = ((String) in.readValue((String.class.getClassLoader())));
+        this.tgl_absen = ((String) in.readValue((String.class.getClassLoader())));
     }
 
     public Absent() {
     }
 
     public String getUsernameKrw() {
-        return username_Krw;
+        return username_krw;
     }
 
     public void setUsernameKrw(String username_Krw) {
-        this.username_Krw = username_Krw;
+        this.username_krw = username_Krw;
     }
 
     public String getImageFile() {
-        return image_File;
+        return image_file;
     }
 
     public void setImageFile(String image_File) {
-        this.image_File = image_File;
+        this.image_file = image_File;
     }
 
     public String getJamMasuk() {
-        return jam_Masuk;
+        return jam_masuk;
     }
 
     public void setJamMasuk(String jam_Masuk) {
-        this.jam_Masuk = jam_Masuk;
+        this.jam_masuk = jam_Masuk;
     }
 
     public String getJamKeluar() {
-        return jam_Keluar;
+        return jam_keluar;
     }
 
     public void setJamKeluar(String jam_Keluar) {
-        this.jam_Keluar = jam_Keluar;
+        this.jam_keluar = jam_Keluar;
     }
 
     public String getStatusAbsn() {
-        return status_Absn;
+        return status_absn;
     }
 
     public void setStatusAbsn(String status_Absn) {
-        this.status_Absn = status_Absn;
+        this.status_absn = status_Absn;
     }
 
     public String getTglAbsen() {
-        return tgl_Absen;
+        return tgl_absen;
     }
 
     public void setTglAbsen(String tgl_Absen) {
-        this.tgl_Absen = tgl_Absen;
+        this.tgl_absen = tgl_Absen;
     }
 
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(username_Krw);
-        dest.writeValue(image_File);
-        dest.writeValue(jam_Masuk);
-        dest.writeValue(jam_Keluar);
-        dest.writeValue(status_Absn);
-        dest.writeValue(tgl_Absen);
+        dest.writeValue(username_krw);
+        dest.writeValue(image_file);
+        dest.writeValue(jam_masuk);
+        dest.writeValue(jam_keluar);
+        dest.writeValue(status_absn);
+        dest.writeValue(tgl_absen);
     }
 
     public int describeContents() {

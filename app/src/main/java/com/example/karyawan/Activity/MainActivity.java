@@ -1,9 +1,12 @@
 package com.example.karyawan.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +20,8 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.karyawan.Model.Karyawan;
 import com.example.karyawan.R;
+import com.example.karyawan.Utils.AppPermission;
+import com.example.karyawan.Utils.GlobalHelper;
 import com.example.karyawan.Utils.GlobalVars;
 import com.google.gson.Gson;
 
@@ -28,6 +33,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String[] ALL_PERMISSIONS = {
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.CAMERA
+    };
+
+    private static final int WRITE_EXTERNAL_STORAGE_CODE = 901;
+    private static final int READ_EXTERNAL_STORAGE_CODE = 902;
+    private static final int CAMERA_CODE = 904;
+    private static final int ACCESS_CALL_PHONE = 903;
+    private static final int ALL_REQUEST_CODE = 999;
+    private AppPermission mRuntimePermission;
 
     private Button btnLogin;
     private TextView tvDaftar;
@@ -44,6 +62,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mRuntimePermission = new AppPermission(this);
+
+        if (mRuntimePermission.hasPermission(ALL_PERMISSIONS)) {
+            GlobalHelper.createFolder();
+        }else{
+            mRuntimePermission.requestPermission(this, ALL_PERMISSIONS, ALL_REQUEST_CODE);
+        }
 
         gson = new Gson();
 
@@ -134,5 +160,49 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
+    }
+
+
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case ALL_REQUEST_CODE:
+                List<Integer> permissionResults = new ArrayList<>();
+                for (int grantResult : grantResults) {
+                    permissionResults.add(grantResult);
+                }
+                if (permissionResults.contains(PackageManager.PERMISSION_DENIED)) {
+                    Toast.makeText(this, "Semua permintaan ditolak", Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    Toast.makeText(this, "Semua permintaan diizinkan", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case WRITE_EXTERNAL_STORAGE_CODE:
+                if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+                    Toast.makeText(this, "Tulis permintaan penyimpanan eksternal tidak diizinkan", Toast.LENGTH_SHORT).show();
+                } else {
+                    //Toast.makeText(this, "Write External Storage Permissions granted", Toast.LENGTH_SHORT).show();
+                }
+                finish();
+                break;
+            case READ_EXTERNAL_STORAGE_CODE:
+                if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+                    Toast.makeText(this, "Baca permintaan penyimpanan eksternal tidak diizinkan", Toast.LENGTH_SHORT).show();
+                } else {
+                    //Toast.makeText(this, "Read External Storage Permissions granted", Toast.LENGTH_SHORT).show();
+                }
+                finish();
+                break;
+            case CAMERA_CODE:
+                if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+                    Toast.makeText(this, "Permintaan Camera diizinkan", Toast.LENGTH_SHORT).show();
+                } else {
+                    //Toast.makeText(this, "Camera Permissions granted", Toast.LENGTH_SHORT).show();
+                }
+                finish();
+                break;
+        }
     }
 }

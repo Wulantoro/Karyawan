@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/tvnama"
             android:layout_marginTop="15dp"
-            android:layout_marginLeft="180dp"
+            android:layout_marginLeft="100dp"
             android:text="tanggal"/>
 
         <!-- TextView Npm Mahasiswa -->

@@ -51,6 +51,7 @@ public class AttendanceActivity extends AppCompatActivity {
         List<Absent> results = new ArrayList<>();
         results.add(absent);
 
+        gson = new Gson();
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
         absentAdapter = new AbsentAdapter(this);
@@ -68,7 +69,7 @@ public class AttendanceActivity extends AppCompatActivity {
        if (absentAdapter != null)
            absentAdapter.clearAll();
 
-        AndroidNetworking.get(GlobalVars.BASE_IP + "absen")
+        AndroidNetworking.get(GlobalVars.BASE_IP + "absen?id_kar=" + id_krw)
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
@@ -89,6 +90,7 @@ public class AttendanceActivity extends AppCompatActivity {
                                 JSONArray datArr = new JSONArray(records);
 
                                 if (datArr.length() > 0) {
+
                                     for (int i = 0; i < datArr.length(); i++) {
                                         Absent absent = gson.fromJson(datArr.getJSONObject(i).toString(), Absent.class);
                                         result.add(absent);
