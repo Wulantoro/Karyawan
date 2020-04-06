@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseArray;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
@@ -39,7 +40,7 @@ public class AbsenActivity extends AppCompatActivity implements BarcodeReader.Ba
     String tanggal;
     String jam_masuk;
     String status_absn;
-    String jam_keluar = "12:00";
+    String jam_keluar;
 
     private static final String TAG = AbsenActivity.class.getName();
 
@@ -57,10 +58,15 @@ public class AbsenActivity extends AppCompatActivity implements BarcodeReader.Ba
 
         //get tanggal
         Calendar c = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        String getCurentDate = sdf.format(c.getTime());
-        tanggal = getCurentDate;
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+////        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+//        String getCurentDate = sdf.format(c.getTime());
+//        tanggal = getCurentDate;
+//        Log.e(TAG, "Tanggal = " + tanggal);
+
+
+        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+       tanggal = date;
         Log.e(TAG, "Tanggal = " + tanggal);
 
         //get time
@@ -80,6 +86,12 @@ public class AbsenActivity extends AppCompatActivity implements BarcodeReader.Ba
             status_absn = "";
         }
         Log.e(TAG, "status absen = " + status_absn);
+
+        if (getCurentTime.compareTo(getTestTime1) > 0) {
+            jam_keluar = jam;
+        } else {
+            jam_keluar = "";
+        }
     }
 
 
@@ -116,9 +128,9 @@ public class AbsenActivity extends AppCompatActivity implements BarcodeReader.Ba
             JSONArray newArr = new JSONArray();
             jsonObject.put("status", "1");
             jsonObject.put("jam_masuk", jam_masuk);
-            jsonObject.put("jam_keluar", "17:00");
+            jsonObject.put("jam_keluar", jam_keluar);
             jsonObject.put("status_absn", status_absn);
-//            jsonObject.put("tgl_absen", tanggal);
+            jsonObject.put("tgl_absen", tanggal);
             jsonObject.put("id_kar", id_krw);
 
             newArr.put(jsonObject);
@@ -140,8 +152,9 @@ public class AbsenActivity extends AppCompatActivity implements BarcodeReader.Ba
 
                             String message = response.getString("message");
                             Toast.makeText(AbsenActivity.this, message, Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(AbsenActivity.this, AttendanceActivity.class);
-                            startActivity(intent);
+//                            Intent intent = new Intent(AbsenActivity.this, AttendanceActivity.class);
+//                            startActivity(intent);
+                            startActivity(new Intent(getApplicationContext(), AttendanceActivity.class));
 
                         } catch (JSONException e) {
                             e.printStackTrace();

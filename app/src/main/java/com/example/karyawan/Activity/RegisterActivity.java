@@ -22,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -80,6 +81,9 @@ public class RegisterActivity extends AppCompatActivity {
     private Button btnsimpan;
     private EditText etnama, etusername, ettelp;
     private EditText etalamat, etpassword;
+    private RadioGroup rggender;
+    private RadioButton rbmale, rbfemale;
+    private RadioButton radioButtonNb;
 
     private static final int PICK_IMAGE_FILE = 1;
     private ImageView imgAdd, ivCamera;
@@ -117,6 +121,11 @@ public class RegisterActivity extends AppCompatActivity {
         ettelp = findViewById(R.id.ettelp);
         etalamat = findViewById(R.id.etalamat);
         etpassword = findViewById(R.id.etpassword);
+
+        rggender = findViewById(R.id.rggender);
+        int selectedId = rggender.getCheckedRadioButtonId();
+        rbmale = (RadioButton) findViewById(selectedId);
+        radioButtonNb = (RadioButton) findViewById(selectedId);
 
         btnsimpan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -442,7 +451,8 @@ public class RegisterActivity extends AppCompatActivity {
             jsonObject.put("divisi", spdivisi.getItemAtPosition(spdivisi.getSelectedItemPosition()).toString());
             jsonObject.put("telp_krw", ettelp.getText().toString());
             jsonObject.put("alamat_krw", etalamat.getText().toString());
-            jsonObject.put("gender_krw", "LAKI - LAKI");
+//            jsonObject.put("gender_krw", "LAKI - LAKI");
+            jsonObject.put("gender_krw", radioButtonNb.getText().toString());
             jsonObject.put("tgllahir_krw", ettgl.getText().toString());
             jsonObject.put("image_name", id_krw+photoExt);
             jsonObject.put("image_file", encodePhoto);

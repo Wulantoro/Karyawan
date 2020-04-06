@@ -156,7 +156,7 @@
             android:padding="5px"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:id="@+id/orientation"
+            android:id="@+id/rggender"
             android:layout_below="@id/tvjnklm"
             android:orientation="vertical"
             >
@@ -164,13 +164,13 @@
             <RadioButton
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:id="@+id/horizontal"
+                android:id="@+id/rbmale"
                 android:text="Laki - laki">
             </RadioButton>
             <RadioButton
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:id="@+id/vertical"
+                android:id="@+id/rbfemale"
                 android:text="Perempuan">
             </RadioButton>
         </RadioGroup>
