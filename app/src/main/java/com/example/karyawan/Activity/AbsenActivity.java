@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseArray;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +44,8 @@ public class AbsenActivity extends AppCompatActivity implements BarcodeReader.Ba
     String status_absn;
     String jam_keluar;
 
+    private Button btncoba;
+
     private static final String TAG = AbsenActivity.class.getName();
 
     @Override
@@ -49,11 +53,14 @@ public class AbsenActivity extends AppCompatActivity implements BarcodeReader.Ba
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_absen);
 
+
+
         barcodeReader = (BarcodeReader) getSupportFragmentManager().findFragmentById(R.id.barcode_scanner);
 
         pref = getSharedPreferences("Id_krw", MODE_PRIVATE);
         id_krw = pref.getString("id_krw", null);
         Log.e(TAG, "id karyawan = " + id_krw);
+
 
 
         //get tanggal
@@ -96,12 +103,7 @@ public class AbsenActivity extends AppCompatActivity implements BarcodeReader.Ba
 
 
     public void onScanned(Barcode barcode) {
-
-//        Intent intent = new Intent(AbsenActivity.this, AttendanceActivity.class);
-//        intent.putExtra("wccode", barcode.displayValue);
         absen();
-//        startActivity(intent);
-
     }
 
     public void onScannedMultiple(List<Barcode> barcodes) {
@@ -126,7 +128,7 @@ public class AbsenActivity extends AppCompatActivity implements BarcodeReader.Ba
 
         try {
             JSONArray newArr = new JSONArray();
-            jsonObject.put("status", "1");
+            jsonObject.put("status", 1);
             jsonObject.put("jam_masuk", jam_masuk);
             jsonObject.put("jam_keluar", jam_keluar);
             jsonObject.put("status_absn", status_absn);
@@ -140,7 +142,7 @@ public class AbsenActivity extends AppCompatActivity implements BarcodeReader.Ba
             e.printStackTrace();
         }
 
-        AndroidNetworking.post(GlobalVars.BASE_IP + "absen.php")
+        AndroidNetworking.post(GlobalVars.BASE_IP + "absen")
                 .addJSONObjectBody(jsonObject)
                 .setPriority(Priority.MEDIUM)
                 .build()
@@ -152,8 +154,6 @@ public class AbsenActivity extends AppCompatActivity implements BarcodeReader.Ba
 
                             String message = response.getString("message");
                             Toast.makeText(AbsenActivity.this, message, Toast.LENGTH_SHORT).show();
-//                            Intent intent = new Intent(AbsenActivity.this, AttendanceActivity.class);
-//                            startActivity(intent);
                             startActivity(new Intent(getApplicationContext(), AttendanceActivity.class));
 
                         } catch (JSONException e) {
