@@ -24,6 +24,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -46,6 +47,12 @@ public class AbsenActivity extends AppCompatActivity implements BarcodeReader.Ba
 
     private Button btncoba;
 
+    Calendar c = Calendar.getInstance();
+    SimpleDateFormat sdf1 = new SimpleDateFormat("HH:mm:ss");
+    String getCurentTime = sdf1.format(c.getTime());
+    String getTestTime = "08:00";
+    String getTestTime1 = "17:00";
+
     private static final String TAG = AbsenActivity.class.getName();
 
     @Override
@@ -63,28 +70,18 @@ public class AbsenActivity extends AppCompatActivity implements BarcodeReader.Ba
 
 
 
-        //get tanggal
+//        get tanggal
         Calendar c = Calendar.getInstance();
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-////        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-//        String getCurentDate = sdf.format(c.getTime());
-//        tanggal = getCurentDate;
-//        Log.e(TAG, "Tanggal = " + tanggal);
-
-
-        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-       tanggal = date;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        String getCurentDate = sdf.format(c.getTime());
+        tanggal =  getCurentDate;
         Log.e(TAG, "Tanggal = " + tanggal);
 
         //get time
         String jam = new SimpleDateFormat("HH:mm", Locale.getDefault()).format(new Date());
         jam_masuk = jam;
         Log.e(TAG, "jam masuk = " + jam_masuk);
-
-        SimpleDateFormat sdf1 = new SimpleDateFormat("HH:mm:ss");
-        String getCurentTime = sdf1.format(c.getTime());
-        String getTestTime = "08:00";
-        String getTestTime1 = "17:00";
 
 
         if (getCurentTime.compareTo(getTestTime) > 0 && getTestTime1.compareTo(getCurentTime) > 0) {
@@ -103,7 +100,13 @@ public class AbsenActivity extends AppCompatActivity implements BarcodeReader.Ba
 
 
     public void onScanned(Barcode barcode) {
-        absen();
+
+        if (getCurentTime.compareTo(getTestTime) > 0 && getTestTime1.compareTo(getCurentTime) > 0) {
+            absen();
+        } else {
+            pulang();
+        }
+
     }
 
     public void onScannedMultiple(List<Barcode> barcodes) {
@@ -132,7 +135,7 @@ public class AbsenActivity extends AppCompatActivity implements BarcodeReader.Ba
             jsonObject.put("jam_masuk", jam_masuk);
             jsonObject.put("jam_keluar", jam_keluar);
             jsonObject.put("status_absn", status_absn);
-            jsonObject.put("tgl_absen", tanggal);
+            jsonObject.put("tgl_absen", tanggal );
             jsonObject.put("id_kar", id_krw);
 
             newArr.put(jsonObject);
@@ -169,6 +172,13 @@ public class AbsenActivity extends AppCompatActivity implements BarcodeReader.Ba
 
                     }
                 });
+
+    }
+
+    private void pulang() {
+
+        startActivity(new Intent(getApplicationContext(), AttendanceActivity.class));
+
 
     }
 

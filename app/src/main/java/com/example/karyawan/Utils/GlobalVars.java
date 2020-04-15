@@ -9,7 +9,7 @@ import net.rehacktive.waspdb.WaspHash;
 import java.io.File;
 
 public class GlobalVars {
-    public static final String BASE_IP = "http://192.168.0.134:8080/perusahaan/index.php/";
+    public static final String BASE_IP = "http://192.168.43.249/perusahaan/index.php/";
     public static final File BASE_DIR = Environment.getExternalStorageDirectory();
     public static final String EXTERNAL_DIR_FILES = "/perusahaan";
     public static final String PICTURES_DIR_FILES = "/Pictures";

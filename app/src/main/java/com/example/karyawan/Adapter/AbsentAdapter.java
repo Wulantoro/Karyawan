@@ -1,6 +1,7 @@
 package com.example.karyawan.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,8 @@ public class AbsentAdapter extends RecyclerView.Adapter<AbsentAdapter.AbsentView
     private List<Absent> list;
     private Context context;
 
+    private static final String TAG = AbsentAdapter.class.getName();
+
 
     public AbsentAdapter(Context context) {
         this.context = context;
@@ -40,10 +43,14 @@ public class AbsentAdapter extends RecyclerView.Adapter<AbsentAdapter.AbsentView
     @Override
     public void onBindViewHolder(AbsentViewHolder holder, int position) {
         final Absent absent = list.get(holder.getAdapterPosition());
+
+        Log.e(TAG, "dataArr" + absent.getImageFile());
+
         holder.tvnama.setText(list.get(position).getUsernameKrw());
         holder.tvjammasuk.setText(list.get(position).getJamMasuk());
         holder.tvjamkeluar.setText(list.get(position).getJamKeluar());
         holder.tvtanggal.setText(list.get(position).getTglAbsen());
+        holder.tvstsabsen.setText(list.get(position).getStatusAbsn());
 
         Glide.with(context)
                 .load(absent.getImageFile())
@@ -100,6 +107,7 @@ public class AbsentAdapter extends RecyclerView.Adapter<AbsentAdapter.AbsentView
 
     public class AbsentViewHolder extends RecyclerView.ViewHolder{
         private TextView tvnama, tvjammasuk, tvjamkeluar, tvtanggal;
+        private TextView tvstsabsen;
         private ImageView ivprofil;
 
         public AbsentViewHolder(View itemView) {
@@ -108,6 +116,7 @@ public class AbsentAdapter extends RecyclerView.Adapter<AbsentAdapter.AbsentView
             tvjammasuk = (TextView) itemView.findViewById(R.id.tvjammasuk);
             tvjamkeluar = (TextView) itemView.findViewById(R.id.tvjamkeluar);
             tvtanggal = itemView.findViewById(R.id.tvtanggal);
+            tvstsabsen = itemView.findViewById(R.id.tvstsabsen);
             ivprofil = itemView.findViewById(R.id.ivprofil);
         }
     }

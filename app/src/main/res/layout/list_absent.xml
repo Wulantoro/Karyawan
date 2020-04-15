@@ -73,15 +73,14 @@
             android:text="Jam Keluar "
             />
 
-<!--        <TextView-->
-<!--            android:id="@+id/tvstatus"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_toRightOf="@id/tvnama"-->
-<!--            android:layout_marginLeft="180dp"-->
-<!--            android:layout_below="@id/tvjammasuk1"-->
-<!--            android:text="status"-->
-<!--            android:textColor="@color/red_A700"/>-->
+        <TextView
+            android:id="@+id/tvstsabsen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/ivprofil"
+            android:layout_below="@id/tvjamkeluar"
+            android:text="status"
+            android:textColor="@color/red_A700"/>
 
 
 
