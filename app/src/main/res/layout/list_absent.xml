@@ -37,7 +37,7 @@
             android:layout_marginLeft="100dp"
             android:text="tanggal"/>
 
-        <!-- TextView Npm Mahasiswa -->
+
         <TextView
         android:id="@+id/tvjammasuk1"
         android:layout_width="wrap_content"
@@ -81,9 +81,6 @@
             android:layout_below="@id/tvjamkeluar"
             android:text="status"
             android:textColor="@color/red_A700"/>
-
-
-
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
