@@ -1,9 +1,234 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.detailKaryawanActivity">
+    tools:context=".Activity.DetailKaryawanActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:id="@+id/appBarProfil"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"/>
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgprofil"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="bottom"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/user"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_below="@id/appBarProfil"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="100dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20dp"
+            >
+
+            <ImageView
+                android:id="@+id/imguser"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/user"
+                />
+
+            <LinearLayout
+                android:layout_toRightOf="@id/imguser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:text="Nama"
+                    />
+
+                <TextView
+                    android:id="@+id/tvnama"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="nama saya"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp">
+
+            <ImageView
+                android:id="@+id/tvtgllahir"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/cake"/>
+
+            <LinearLayout
+                android:layout_toRightOf="@id/tvtgllahir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:text="Tanggal Lahir"
+                    />
+
+                <TextView
+                    android:id="@+id/tvtgllahir2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="02 September 1990"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp">
+
+            <ImageView
+                android:id="@+id/imgjnskelamin"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="20dp"
+                android:src="@drawable/gender"
+                />
+
+            <LinearLayout
+                android:layout_toRightOf="@id/imgjnskelamin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:text="Jenis Kelamin"
+                    />
+
+                <TextView
+                    android:id="@+id/tvjnskelamin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="laki-laki"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp">
+
+            <ImageView
+                android:id="@+id/imgalamat"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/address"/>
+
+            <LinearLayout
+                android:layout_toRightOf="@id/imgalamat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:text="Alamat"
+                    />
+
+                <TextView
+                    android:id="@+id/tvalamat2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jl.Sudirman no 190"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp">
+
+            <ImageView
+                android:id="@+id/imgtelp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/smartphone"/>
+
+            <LinearLayout
+                android:layout_toRightOf="@id/imgtelp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:text="No. Telphone"
+                    />
+
+                <TextView
+                    android:id="@+id/tvtelp1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="08908090800"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

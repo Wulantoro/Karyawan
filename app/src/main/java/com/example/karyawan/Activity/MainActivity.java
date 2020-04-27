@@ -133,6 +133,11 @@ public class MainActivity extends AppCompatActivity {
 
                                         if (karyawan.getDivisi().equalsIgnoreCase("HRD")) {
                                             Intent intent = new Intent(getApplicationContext(), HomeHrdActivity.class);
+                                            pref = getSharedPreferences("Id_krw", MODE_PRIVATE);
+                                            id_krw = karyawan.getIdKrw();
+                                            SharedPreferences.Editor editor = pref.edit();
+                                            editor.putString("id_krw", id_krw);
+                                            editor.commit();
                                             startActivity(intent);
                                         } else {
                                             Intent intent = new Intent(getApplicationContext(), HomeActivity.class);

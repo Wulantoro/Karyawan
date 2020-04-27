@@ -1,6 +1,7 @@
 package com.example.karyawan.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.karyawan.Activity.DetailKaryawanActivity;
 import com.example.karyawan.Model.Karyawan;
 import com.example.karyawan.R;
 
@@ -48,6 +50,17 @@ public class KaryawanAdapter extends RecyclerView.Adapter<KaryawanAdapter.Karyaw
         Glide.with(context)
                 .load(karyawan.getImageFile())
                 .into(holder.ivprofil);
+
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DetailKaryawanActivity.class);
+                intent.putExtra("key_krw", karyawan);
+                context.startActivity(intent);
+//                ((DetailKaryawanActivity)context).finish();
+            }
+        });
 
     }
 

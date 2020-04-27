@@ -50,7 +50,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:id="@+id/ivuser"
+                        android:id="@+id/ivprofil"
                         android:src="@drawable/user4"
                         android:layout_marginTop="10dp"
                         android:layout_width="80dp"
