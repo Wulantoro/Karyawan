@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Gson gson;
 
+    private static final String TAG = MainActivity.class.getName();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onError(ANError anError) {
                         Toast.makeText(MainActivity.this, "Gagal Login", Toast.LENGTH_SHORT).show();
+                        Log.e(TAG, "error = " + anError);
 
                     }
                 });
