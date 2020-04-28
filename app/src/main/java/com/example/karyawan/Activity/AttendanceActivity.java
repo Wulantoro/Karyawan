@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
@@ -60,16 +61,66 @@ public class AttendanceActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(layoutManager);
 
-        loadAbsent(id_krw);
-        recyclerView.setAdapter(absentAdapter);
+        if (id_krw == null) {
+            loadAbsenHrd();
+            recyclerView.setAdapter(absentAdapter);
+        } else {
+
+            loadAbsent(id_krw);
+            recyclerView.setAdapter(absentAdapter);
+        }
+//        recyclerView.setAdapter(absentAdapter);
 
     }
 
     void loadAbsent(String id_krw) {
-       if (absentAdapter != null)
-           absentAdapter.clearAll();
+        if (absentAdapter != null)
+            absentAdapter.clearAll();
 
-        AndroidNetworking.get(GlobalVars.BASE_IP + "absen?id_kar=" + id_krw)
+            AndroidNetworking.get(GlobalVars.BASE_IP + "absen?id_kar=" + id_krw)
+                    .setPriority(Priority.MEDIUM)
+                    .build()
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            List<Absent> result = new ArrayList<>();
+                            try {
+
+                                Log.e("tampil = ", response.toString(1));
+
+                                if (result != null)
+                                    result.clear();
+
+                                String message = response.getString("message");
+
+                                if (message.equals("Absent were found")) {
+                                    String records = response.getString("data");
+                                    JSONArray datArr = new JSONArray(records);
+
+                                    if (datArr.length() > 0) {
+
+                                        for (int i = 0; i < datArr.length(); i++) {
+                                            Absent absent = gson.fromJson(datArr.getJSONObject(i).toString(), Absent.class);
+                                            result.add(absent);
+                                        }
+                                    }
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            absentAdapter.addAll(result);
+                        }
+
+                        @Override
+                        public void onError(ANError anError) {
+
+                        }
+                    });
+    }
+
+    private void  loadAbsenHrd() {
+
+        AndroidNetworking.get(GlobalVars.BASE_IP + "absen")
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {

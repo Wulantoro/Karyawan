@@ -2,6 +2,7 @@ package com.example.karyawan.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ public class HomeHrdActivity extends AppCompatActivity {
 
     private ImageView ivkaryawan;
     private ImageView ivprofil;
+    private ImageView ivarsip;
 
     public SharedPreferences pref, prf;
 
@@ -29,6 +31,7 @@ public class HomeHrdActivity extends AppCompatActivity {
 
         ivkaryawan = findViewById(R.id.ivkaryawan);
         ivprofil = findViewById(R.id.ivprofil);
+        ivarsip = findViewById(R.id.ivarsip);
 
         pref = getSharedPreferences("Id_krw", MODE_PRIVATE);
         id_krw = pref.getString("id_krw", null);
@@ -51,6 +54,23 @@ public class HomeHrdActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putString("id_krw", id_krw);
                 editor.commit();
+                startActivity(intent);
+            }
+        });
+
+        ivarsip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AttendanceActivity.class);
+                pref = getSharedPreferences("Id_krw", MODE_PRIVATE);
+                id_krw =pref.getString("id_krw", null);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.remove("id_krw");
+                editor.commit();
+
+//                SharedPreferences settings = getApplicationContext().getSharedPreferences("PreferencesName", Context.MODE_PRIVATE);
+//                settings.edit().remove("KeyName").commit();
+
                 startActivity(intent);
             }
         });
