@@ -232,20 +232,13 @@
         </RelativeLayout>
 
         <ImageView
-            android:id="@+id/imglogout"
+            android:id="@+id/ivedit"
             android:layout_marginTop="35dp"
             android:layout_gravity="center"
-            android:background="@drawable/ic_logout"
+            android:background="@drawable/ic_mode_edit"
             android:layout_width="30dp"
             android:layout_height="30dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textSize="12sp"
-            android:text="Keluar"
-            android:textColor="@color/black"/>
     </LinearLayout>
 
 </RelativeLayout>

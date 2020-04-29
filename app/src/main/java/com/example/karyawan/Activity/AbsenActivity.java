@@ -16,6 +16,7 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.example.karyawan.Model.Absent;
 import com.example.karyawan.R;
 import com.example.karyawan.Utils.GlobalVars;
 import com.google.android.gms.vision.barcode.Barcode;
@@ -176,8 +177,40 @@ public class AbsenActivity extends AppCompatActivity implements BarcodeReader.Ba
     }
 
     private void pulang() {
+        Absent absent = new Absent();
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("status", 2);
+            jsonObject.put("jam_masuk", absent.getJamMasuk());
+            jsonObject.put("jam_keluar", jam_keluar);
+            jsonObject.put("status_absn", absent.getStatusAbsn());
+            jsonObject.put("tgl_absen", absent.getTglAbsen() );
+            jsonObject.put("id_kar", id_krw);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-        startActivity(new Intent(getApplicationContext(), AttendanceActivity.class));
+        AndroidNetworking.put(GlobalVars.BASE_IP + "absen?id_absen")
+                .addJSONObjectBody(jsonObject)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            String message = response.getString("message");
+                            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), "JSONExceptions" + e, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        Toast.makeText(getApplicationContext(), "Data gagal diedit", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
 
     }

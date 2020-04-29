@@ -69,7 +69,6 @@ public class AttendanceActivity extends AppCompatActivity {
             loadAbsent(id_krw);
             recyclerView.setAdapter(absentAdapter);
         }
-//        recyclerView.setAdapter(absentAdapter);
 
     }
 

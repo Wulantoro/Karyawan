@@ -14,8 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
-        <activity android:name=".Activity.DetailKaryawanActivity"></activity>
+        <activity android:name=".Activity.EditKaryawanActivity"></activity>
+        <activity android:name=".Activity.DetailKaryawanActivity" />
         <activity android:name=".Activity.KaryawanActivity" />
         <activity android:name=".Activity.AbsenActivity" />
         <activity android:name=".ImagePicker.HiddenActivity" />
