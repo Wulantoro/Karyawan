@@ -374,8 +374,8 @@ public class EditKaryawanActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(ANError anError) {
-//                        Toast.makeText(getApplicationContext(), "Gagal mengubah data", Toast.LENGTH_SHORT).show();
-                        Toast.makeText(getApplicationContext(), anError.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Gagal mengubah data", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext(), anError.getMessage(), Toast.LENGTH_SHORT).show();
 
                     }
                 });
