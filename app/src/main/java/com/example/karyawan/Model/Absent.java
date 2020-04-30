@@ -12,6 +12,7 @@ public class Absent implements Parcelable
     private String jam_keluar;
     private String status_absn;
     private String tgl_absen;
+    private String id_absen;
     public final static Parcelable.Creator<Absent> CREATOR = new Parcelable.Creator<Absent>() {
 
 
@@ -36,6 +37,7 @@ public class Absent implements Parcelable
         this.jam_keluar = ((String) in.readValue((String.class.getClassLoader())));
         this.status_absn = ((String) in.readValue((String.class.getClassLoader())));
         this.tgl_absen = ((String) in.readValue((String.class.getClassLoader())));
+        this.id_absen = ((String) in.readValue((String.class.getClassLoader())));
     }
 
     public Absent() {
@@ -89,6 +91,14 @@ public class Absent implements Parcelable
         this.tgl_absen = tgl_Absen;
     }
 
+    public String getId_absen() {
+        return id_absen;
+    }
+
+    public void setId_absen(String id_absen) {
+        this.id_absen = id_absen;
+    }
+
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(username_krw);
         dest.writeValue(image_file);
@@ -96,6 +106,7 @@ public class Absent implements Parcelable
         dest.writeValue(jam_keluar);
         dest.writeValue(status_absn);
         dest.writeValue(tgl_absen);
+        dest.writeValue(id_absen);
     }
 
     public int describeContents() {

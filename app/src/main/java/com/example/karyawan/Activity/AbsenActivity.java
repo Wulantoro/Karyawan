@@ -16,10 +16,12 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.example.karyawan.Adapter.AbsentAdapter;
 import com.example.karyawan.Model.Absent;
 import com.example.karyawan.R;
 import com.example.karyawan.Utils.GlobalVars;
 import com.google.android.gms.vision.barcode.Barcode;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,6 +29,7 @@ import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -37,14 +40,19 @@ import info.androidhive.barcode.BarcodeReader;
 public class AbsenActivity extends AppCompatActivity implements BarcodeReader.BarcodeReaderListener {
 
     BarcodeReader barcodeReader;
-
     public SharedPreferences pref, prf;
+    private Gson gson;
+    private AbsentAdapter absentAdapter;
 
     String id_krw;
     String tanggal;
     String jam_masuk;
     String status_absn;
     String jam_keluar;
+
+    String jammasuk1;
+    String id_absn;
+    String sts_absen;
 
     private Button btncoba;
 
@@ -62,7 +70,8 @@ public class AbsenActivity extends AppCompatActivity implements BarcodeReader.Ba
         setContentView(R.layout.activity_absen);
 
 
-
+         gson = new Gson();
+        absentAdapter = new AbsentAdapter(this);
         barcodeReader = (BarcodeReader) getSupportFragmentManager().findFragmentById(R.id.barcode_scanner);
 
         pref = getSharedPreferences("Id_krw", MODE_PRIVATE);
@@ -84,6 +93,7 @@ public class AbsenActivity extends AppCompatActivity implements BarcodeReader.Ba
         jam_masuk = jam;
         Log.e(TAG, "jam masuk = " + jam_masuk);
 
+        loadAbsen(id_krw);
 
         if (getCurentTime.compareTo(getTestTime) > 0 && getTestTime1.compareTo(getCurentTime) > 0) {
             status_absn = "TERLAMBAT";
@@ -106,6 +116,7 @@ public class AbsenActivity extends AppCompatActivity implements BarcodeReader.Ba
             absen();
         } else {
             pulang();
+//            startActivity(new Intent(getApplicationContext(), AttendanceActivity.class));
         }
 
     }
@@ -177,15 +188,22 @@ public class AbsenActivity extends AppCompatActivity implements BarcodeReader.Ba
     }
 
     private void pulang() {
-        Absent absent = new Absent();
+
         JSONObject jsonObject = new JSONObject();
         try {
+            JSONArray newArr = new JSONArray();
+            jsonObject.put("id_absen", id_absn);
             jsonObject.put("status", 2);
-            jsonObject.put("jam_masuk", absent.getJamMasuk());
+            jsonObject.put("jam_masuk", jammasuk1);
             jsonObject.put("jam_keluar", jam_keluar);
-            jsonObject.put("status_absn", absent.getStatusAbsn());
-            jsonObject.put("tgl_absen", absent.getTglAbsen() );
+            jsonObject.put("status_absn", sts_absen);
+            jsonObject.put("tgl_absen", tanggal );
             jsonObject.put("id_kar", id_krw);
+
+            newArr.put(jsonObject);
+
+            Log.e(TAG, "coba input = " + newArr.toString(1));
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -200,6 +218,7 @@ public class AbsenActivity extends AppCompatActivity implements BarcodeReader.Ba
                         try {
                             String message = response.getString("message");
                             Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), AttendanceActivity.class));
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(getApplicationContext(), "JSONExceptions" + e, Toast.LENGTH_SHORT).show();
@@ -211,8 +230,56 @@ public class AbsenActivity extends AppCompatActivity implements BarcodeReader.Ba
                         Toast.makeText(getApplicationContext(), "Data gagal diedit", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
 
+    void loadAbsen(String id_krw) {
+        if (absentAdapter != null)
+            absentAdapter.clearAll();
 
+        AndroidNetworking.get(GlobalVars.BASE_IP + "absen?id_kar=" + id_krw)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        List<Absent> result = new ArrayList<>();
+                        try {
+
+                            Log.e("tampil = ", response.toString(1));
+
+                            if (result != null)
+                                result.clear();
+
+                            String message = response.getString("message");
+
+                            if (message.equals("Absent were found")) {
+                                String records = response.getString("data");
+                                JSONArray datArr = new JSONArray(records);
+
+                                if (datArr.length() > 0) {
+
+                                    for (int i = 0; i < datArr.length(); i++) {
+                                        Absent absent = gson.fromJson(datArr.getJSONObject(i).toString(), Absent.class);
+                                        result.add(absent);
+                                         jammasuk1 = absent.getJamMasuk();
+                                         id_absn = absent.getId_absen();
+                                         sts_absen = absent.getStatusAbsn();
+                                         Log.e(TAG, "jam masuk 1 = " +jammasuk1 );
+
+                                    }
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        absentAdapter.addAll(result);
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+
+                    }
+                });
     }
 
 }
