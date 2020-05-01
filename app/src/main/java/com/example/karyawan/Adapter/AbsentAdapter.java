@@ -46,7 +46,7 @@ public class AbsentAdapter extends RecyclerView.Adapter<AbsentAdapter.AbsentView
 
         Log.e(TAG, "dataArr" + absent.getImageFile());
 
-        holder.tvnama.setText(list.get(position).getUsernameKrw());
+        holder.tvnama.setText(list.get(position).getNamaKrw());
         holder.tvjammasuk.setText(list.get(position).getJamMasuk());
         holder.tvjamkeluar.setText(list.get(position).getJamKeluar());
         holder.tvtanggal.setText(list.get(position).getTglAbsen());

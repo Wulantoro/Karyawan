@@ -98,8 +98,8 @@ public class EditKaryawanActivity extends AppCompatActivity {
     private EditText etalamat, etpassword;
     private EditText  ettelp;
     private EditText ettgl;
-    private RadioGroup rggender;
-    private RadioButton rbgender;
+    private RadioGroup rggender, rggenderP;
+    private RadioButton rbgender, rbmale, rbfemale;
     private Button btnsimpan;
     private Spinner spdivisi;
     SpinnerAdapter spinAdapter;
@@ -124,6 +124,8 @@ public class EditKaryawanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_karyawan);
 
+
+
         gson = new Gson();
         imgUser = findViewById(R.id.imgUser);
         etnama = findViewById(R.id.etnama);
@@ -132,6 +134,8 @@ public class EditKaryawanActivity extends AppCompatActivity {
         etalamat = findViewById(R.id.etalamat);
         etpassword = findViewById(R.id.etpassword);
         rggender =  findViewById(R.id.rggender);
+        rbfemale = findViewById(R.id.rbfemale);
+        rbmale = findViewById(R.id.rbmale);
         ettgl = findViewById(R.id.ettgl);
         btnsimpan = findViewById(R.id.btnsimpan);
         ivCamera = findViewById(R.id.ivCamera);
@@ -278,6 +282,7 @@ public class EditKaryawanActivity extends AppCompatActivity {
 
                         Glide.with(getApplicationContext())
                                 .load(mypath)
+                                .apply(RequestOptions.circleCropTransform())
                                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                                 .skipMemoryCache(true)
                                 .placeholder(R.drawable.user)
@@ -314,6 +319,26 @@ public class EditKaryawanActivity extends AppCompatActivity {
         deleteRecursive(actualImage);
 
         return compressedImage;
+    }
+
+    private void openFile() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_PICK);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_FILE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE_FILE && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            photoUri = data.getData();
+            Glide.with(this)
+                    .load(photoUri)
+                    .skipMemoryCache(true)
+                    .apply(RequestOptions.circleCropTransform())
+                    .into(imgUser);
+        }
     }
 
 
@@ -547,8 +572,6 @@ public class EditKaryawanActivity extends AppCompatActivity {
                                 JSONObject jsonObject = new JSONObject(records);
                                 etnama.setText(jsonObject.getString("nama_krw"));
                                 etusername.setText(jsonObject.getString("username_krw"));
-//                                jsonObject.put("divisi", spdivisi.getItemAtPosition(spdivisi.getSelectedItemPosition()).toString());
-//                                rbgender.setText(jsonObject.getString("gender_krw"));
                                 ettgl.setText(jsonObject.getString("tgllahir_krw"));
                                 ettelp.setText(jsonObject.getString("telp_krw"));
                                 etalamat.setText(jsonObject.getString("alamat_krw"));
@@ -560,6 +583,7 @@ public class EditKaryawanActivity extends AppCompatActivity {
                                         .skipMemoryCache(true)
                                         .centerCrop()
                                         .dontAnimate()
+
                                         .into(imgUser);
                             }
                         } catch (Exception e) {

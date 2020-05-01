@@ -17,12 +17,13 @@ public class HomeHrdActivity extends AppCompatActivity {
     private ImageView ivkaryawan;
     private ImageView ivprofil;
     private ImageView ivarsip;
+    private ImageView ivabsent;
 
     public SharedPreferences pref, prf;
 
     String id_krw;
 
-    private static final String TAG = HomeActivity.class.getName();
+    private static final String TAG = HomeHrdActivity.class.getName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,7 @@ public class HomeHrdActivity extends AppCompatActivity {
         ivkaryawan = findViewById(R.id.ivkaryawan);
         ivprofil = findViewById(R.id.ivprofil);
         ivarsip = findViewById(R.id.ivarsip);
+        ivabsent = findViewById(R.id.ivabsent);
 
         pref = getSharedPreferences("Id_krw", MODE_PRIVATE);
         id_krw = pref.getString("id_krw", null);
@@ -67,10 +69,19 @@ public class HomeHrdActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = pref.edit();
                 editor.remove("id_krw");
                 editor.commit();
+                startActivity(intent);
+            }
+        });
 
-//                SharedPreferences settings = getApplicationContext().getSharedPreferences("PreferencesName", Context.MODE_PRIVATE);
-//                settings.edit().remove("KeyName").commit();
-
+        ivabsent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AbsenActivity.class);
+                pref = getSharedPreferences("Id_krw", MODE_PRIVATE);
+                id_krw =pref.getString("id_krw", null);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("id_krw", id_krw);
+                editor.commit();
                 startActivity(intent);
             }
         });

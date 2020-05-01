@@ -13,6 +13,7 @@ public class Absent implements Parcelable
     private String status_absn;
     private String tgl_absen;
     private String id_absen;
+    private String nama_krw;
     public final static Parcelable.Creator<Absent> CREATOR = new Parcelable.Creator<Absent>() {
 
 
@@ -38,6 +39,7 @@ public class Absent implements Parcelable
         this.status_absn = ((String) in.readValue((String.class.getClassLoader())));
         this.tgl_absen = ((String) in.readValue((String.class.getClassLoader())));
         this.id_absen = ((String) in.readValue((String.class.getClassLoader())));
+        this.nama_krw = ((String) in.readValue((String.class.getClassLoader())));
     }
 
     public Absent() {
@@ -99,6 +101,14 @@ public class Absent implements Parcelable
         this.id_absen = id_absen;
     }
 
+    public String getNamaKrw() {
+        return nama_krw;
+    }
+
+    public void setNamaKrw(String namaKrw) {
+        this.nama_krw = namaKrw;
+    }
+
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(username_krw);
         dest.writeValue(image_file);
@@ -114,52 +124,3 @@ public class Absent implements Parcelable
     }
 
 }
-
-//public class Absent {
-//
-//    private String nama;
-//    private String jamMasuk;
-//    private String jamKeluar;
-//    private String tanggal;
-//
-//    public Absent(String nama, String jamMasuk, String jamKeluar, String tanggal) {
-//        this.nama = nama;
-//        this.jamMasuk = jamMasuk;
-//        this.jamKeluar = jamKeluar;
-//        this.tanggal = tanggal;
-//
-//    }
-//
-//    public String getNama() {
-//        return nama;
-//    }
-//
-//    public void setNama(String nama) {
-//        this.nama = nama;
-//    }
-//
-//    public String getJamMasuk() {
-//        return jamMasuk;
-//    }
-//
-//    public void setJamMasuk(String jamMasuk) {
-//        this.jamMasuk = jamMasuk;
-//    }
-//
-//    public String getJamKeluar() {
-//        return jamKeluar;
-//    }
-//
-//    public void setJamKeluar(String jamKeluar) {
-//        this.jamKeluar = jamKeluar;
-//    }
-//
-//    public String getTanggal() {
-//        return tanggal;
-//    }
-//
-//    public void setTanggal(String tanggal) {
-//        this.tanggal = tanggal;
-//    }
-//
-//}

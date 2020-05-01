@@ -43,7 +43,7 @@ public class ProfilActivity extends AppCompatActivity {
     public SharedPreferences pref, prf;
 
     String id_krw;
-//    private Karyawan karyawan;
+
 
 
     private static final String TAG = ProfilActivity.class.getName();
@@ -119,7 +119,7 @@ public class ProfilActivity extends AppCompatActivity {
                                         .load(jsonObject.getString("image_file"))
                                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                                         .skipMemoryCache(true)
-                                        .centerCrop()
+//                                        .centerCrop()
                                         .dontAnimate()
                                         .into(imgprofil);
                             }

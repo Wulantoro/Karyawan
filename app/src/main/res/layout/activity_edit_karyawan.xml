@@ -23,41 +23,55 @@
             android:orientation="vertical">
 
 
-
             <RelativeLayout
-                android:id="@+id/rvPhoto"
+                android:id="@+id/appBarProfil"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true">
+                android:layout_height="250dp">
 
-                <ImageView
+                <androidx.appcompat.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"/>
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imgUser"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="15dp"
-                    android:background="@drawable/circle" />
+                    android:gravity="bottom"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/user"
+                    />
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imgUser"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp">
                 <ImageView
                     android:id="@+id/ivGalery"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                   android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
                     android:layout_below="@id/imgUser"
-
                     android:background="@drawable/ic_folder_black_24dp"/>
 
                 <ImageView
                     android:id="@+id/ivCamera"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
+                    android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
                     android:layout_toRightOf="@id/ivGalery"
                     android:layout_below="@id/imgUser"
                     android:background="@drawable/ic_camera" />
+                </LinearLayout>
 
             </RelativeLayout>
-
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"

@@ -3,9 +3,11 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/tools"
     card_view:cardCornerRadius="6dp"
     card_view:cardElevation="3dp"
-    card_view:cardUseCompatPadding="true">
+    card_view:cardUseCompatPadding="true"
+    app:ignore="NamespaceTypo">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -14,18 +16,31 @@
         android:orientation="vertical"
         android:padding="5dp">
 
-        <ImageView
+        <RelativeLayout
+            android:id="@+id/rlimage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/ivprofil"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/user"/>
+            android:src="@drawable/user"
+            app:civ_border_color="#fff"
+            app:civ_border_width="2dp"
+            />
+    </RelativeLayout>
 
-        <TextView
-            android:id="@+id/tvnama"
-            android:layout_toRightOf="@id/ivprofil"
+
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@id/rlimage"
+            android:layout_marginLeft="20dp">
+        <TextView
+            android:id="@+id/tvnama"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="nama"/>
 
         <TextView
@@ -33,7 +48,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/tvnama"
-            android:layout_marginTop="15dp"
             android:layout_marginLeft="100dp"
             android:text="tanggal"/>
 
@@ -41,7 +55,6 @@
         <TextView
         android:id="@+id/tvjammasuk1"
         android:layout_width="wrap_content"
-        android:layout_toRightOf="@id/ivprofil"
         android:layout_height="wrap_content"
             android:layout_below="@id/tvnama"
         android:text="Jam Masuk : "/>
@@ -49,7 +62,6 @@
         <TextView
             android:id="@+id/tvjammasuk"
             android:layout_width="wrap_content"
-            android:layout_toRightOf="@id/ivprofil"
             android:layout_height="wrap_content"
             android:layout_below="@id/tvnama"
             android:layout_marginLeft="90dp"
@@ -59,7 +71,6 @@
             android:id="@+id/tvjamkeluar1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/ivprofil"
             android:layout_below="@id/tvjammasuk1"
             android:text="Jam Keluar : "
             />
@@ -67,7 +78,6 @@
             android:id="@+id/tvjamkeluar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/ivprofil"
             android:layout_marginLeft="90dp"
             android:layout_below="@id/tvjammasuk1"
             android:text="Jam Keluar "
@@ -77,10 +87,10 @@
             android:id="@+id/tvstsabsen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/ivprofil"
             android:layout_below="@id/tvjamkeluar"
             android:text="status"
             android:textColor="@color/red_A700"/>
+        </RelativeLayout>
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

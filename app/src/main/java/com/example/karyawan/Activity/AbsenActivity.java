@@ -236,7 +236,7 @@ public class AbsenActivity extends AppCompatActivity implements BarcodeReader.Ba
         if (absentAdapter != null)
             absentAdapter.clearAll();
 
-        AndroidNetworking.get(GlobalVars.BASE_IP + "absen?id_kar=" + id_krw)
+        AndroidNetworking.get(GlobalVars.BASE_IP + "absen/last?id_kar=" + id_krw)
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
