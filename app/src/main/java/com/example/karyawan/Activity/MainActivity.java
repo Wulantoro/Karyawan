@@ -108,7 +108,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         AndroidNetworking.post(GlobalVars.BASE_IP + "login")
-                .addJSONObjectBody(jsonObject)
+                //.addJSONObjectBody(jsonObject)
+                .addBodyParameter("username_krw", etusername.getText().toString())
+                .addBodyParameter("password", etpassword.getText().toString())
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
@@ -163,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(ANError anError) {
-                        Toast.makeText(MainActivity.this, "Gagal Login", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Gagal Login = " + anError, Toast.LENGTH_SHORT).show();
                         Log.e(TAG, "error = " + anError);
 
                     }

@@ -570,7 +570,20 @@ public class EditKaryawanActivity extends AppCompatActivity {
                             if (message.equals("Karyawan Ditemukan")) {
                                 String records = response.getString("data");
                                 JSONObject jsonObject = new JSONObject(records);
-                                etnama.setText(jsonObject.getString("nama_krw"));
+
+                                Karyawan karyawan = gson.fromJson(jsonObject.toString(), Karyawan.class);
+
+                                //Log.e(TAG, "jsonObject "+jsonObject.toString(1));
+
+                                //rggender.che
+
+                                if (karyawan.getGenderKrw().equalsIgnoreCase("perempuan")){
+                                    rggender.check(R.id.rbfemale);
+                                }else {
+                                    rggender.check(R.id.rbmale);
+                                }
+
+                                etnama.setText(karyawan.getNamaKrw());
                                 etusername.setText(jsonObject.getString("username_krw"));
                                 ettgl.setText(jsonObject.getString("tgllahir_krw"));
                                 ettelp.setText(jsonObject.getString("telp_krw"));
@@ -583,7 +596,7 @@ public class EditKaryawanActivity extends AppCompatActivity {
                                         .skipMemoryCache(true)
                                         .centerCrop()
                                         .dontAnimate()
-
+                                        .apply(RequestOptions.circleCropTransform())
                                         .into(imgUser);
                             }
                         } catch (Exception e) {
