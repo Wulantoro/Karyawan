@@ -67,7 +67,7 @@ public class HomeHrdActivity extends AppCompatActivity {
                 pref = getSharedPreferences("Id_krw", MODE_PRIVATE);
                 id_krw =pref.getString("id_krw", null);
                 SharedPreferences.Editor editor = pref.edit();
-                editor.remove("id_krw");
+                editor.clear();
                 editor.commit();
                 startActivity(intent);
             }
