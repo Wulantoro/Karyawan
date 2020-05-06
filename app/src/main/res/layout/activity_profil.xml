@@ -9,7 +9,7 @@
     <RelativeLayout
         android:id="@+id/appBarProfil"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="@dimen/_150mdp">
 
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
@@ -18,12 +18,11 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgprofil"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="@dimen/_120mdp"
+            android:layout_height="@dimen/_120mdp"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:gravity="bottom"
-            android:layout_marginTop="40dp"
             android:src="@drawable/user"
             />
 
@@ -33,23 +32,23 @@
         android:layout_below="@id/appBarProfil"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingHorizontal="10dp"
+        android:paddingHorizontal="@dimen/_10mdp"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="100dp"
+        android:layout_marginLeft="@dimen/_100mdp"
         android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="@dimen/_20mdp"
             >
 
             <ImageView
                 android:id="@+id/imguser"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginRight="20dp"
+                android:layout_width="@dimen/_40mdp"
+                android:layout_height="@dimen/_40mdp"
+                android:layout_marginRight="@dimen/_20mdp"
                 android:src="@drawable/user"
                 />
 
@@ -62,7 +61,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_15font_mdp"
                     android:text="Nama"
                     />
 
@@ -71,7 +70,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="nama saya"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/_12font_mdp"
                     android:textStyle="bold"
                     android:textColor="@color/black"/>
             </LinearLayout>
@@ -79,16 +78,16 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/_10mdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp">
+            android:layout_marginLeft="@dimen/_20mdp">
 
             <ImageView
                 android:id="@+id/tvtgllahir"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginRight="20dp"
+                android:layout_width="@dimen/_30mdp"
+                android:layout_height="@dimen/_30mdp"
+                android:layout_marginRight="@dimen/_20mdp"
                 android:background="@drawable/cake"/>
 
             <LinearLayout
@@ -100,7 +99,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_15font_mdp"
                     android:text="Tanggal Lahir"
                     />
 
@@ -109,7 +108,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="02 September 1990"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/_12font_mdp"
                     android:textStyle="bold"
                     android:textColor="@color/black"/>
             </LinearLayout>
@@ -117,16 +116,16 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/_10mdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp">
+            android:layout_marginLeft="@dimen/_20mdp">
 
             <ImageView
                 android:id="@+id/imgjnskelamin"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginRight="20dp"
+                android:layout_width="@dimen/_30mdp"
+                android:layout_height="@dimen/_30mdp"
+                android:layout_marginRight="@dimen/_20mdp"
                 android:src="@drawable/gender"
                 />
 
@@ -139,7 +138,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_15font_mdp"
                     android:text="Jenis Kelamin"
                    />
 
@@ -148,7 +147,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="laki-laki"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/_12font_mdp"
                     android:textStyle="bold"
                     android:textColor="@color/black"/>
             </LinearLayout>
@@ -156,16 +155,16 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="@dimen/_15mdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp">
+            android:layout_marginLeft="@dimen/_20mdp">
 
             <ImageView
                 android:id="@+id/imgalamat"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginRight="20dp"
+                android:layout_width="@dimen/_30mdp"
+                android:layout_height="@dimen/_30mdp"
+                android:layout_marginRight="@dimen/_20mdp"
                 android:background="@drawable/address"/>
 
             <LinearLayout
@@ -177,7 +176,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_15font_mdp"
                     android:text="Alamat"
                     />
 
@@ -186,7 +185,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Jl.Sudirman no 190"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/_12font_mdp"
                     android:textStyle="bold"
                     android:textColor="@color/black"/>
             </LinearLayout>
@@ -194,16 +193,16 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="@dimen/_15mdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp">
+            android:layout_marginLeft="@dimen/_20mdp">
 
             <ImageView
                 android:id="@+id/imgtelp"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginRight="20dp"
+                android:layout_width="@dimen/_30mdp"
+                android:layout_height="@dimen/_30mdp"
+                android:layout_marginRight="@dimen/_20mdp"
                 android:background="@drawable/smartphone"/>
 
             <LinearLayout
@@ -215,7 +214,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
+                    android:textSize="@dimen/_15font_mdp"
                     android:text="No. Telphone"
                     />
 
@@ -224,7 +223,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="08908090800"
-                    android:textSize="12sp"
+                    android:textSize="@dimen/_12font_mdp"
                     android:textStyle="bold"
                     android:textColor="@color/black"/>
             </LinearLayout>
@@ -233,11 +232,11 @@
 
         <ImageView
             android:id="@+id/ivedit"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="@dimen/_30mdp"
             android:layout_gravity="center"
             android:background="@drawable/ic_mode_edit"
-            android:layout_width="30dp"
-            android:layout_height="30dp"/>
+            android:layout_width="@dimen/_30mdp"
+            android:layout_height="@dimen/_30mdp"/>
 
     </LinearLayout>
 

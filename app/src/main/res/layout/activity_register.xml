@@ -18,8 +18,8 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="@dimen/_10mdp"
+        android:layout_marginRight="@dimen/_10mdp"
         android:orientation="vertical">
 
 
@@ -27,21 +27,14 @@
         <RelativeLayout
             android:id="@+id/appBarProfil"
             android:layout_width="match_parent"
-            android:layout_height="250dp">
-
-            <androidx.appcompat.widget.Toolbar
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"/>
-
+            android:layout_height="@dimen/_200mdp">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imgUser"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_centerVertical="true"
+                android:layout_width="@dimen/_135mdp"
+                android:layout_height="@dimen/_135mdp"
                 android:layout_centerHorizontal="true"
                 android:gravity="bottom"
-                android:layout_marginTop="20dp"
                 android:src="@drawable/user"
                 />
 
@@ -50,12 +43,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/imgUser"
                 android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp">
+                android:layout_centerHorizontal="true">
                 <ImageView
                     android:id="@+id/imgAdd"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="@dimen/_35mdp"
+                    android:layout_height="@dimen/_35mdp"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
                     android:layout_below="@id/imgUser"
@@ -63,8 +55,8 @@
 
                 <ImageView
                     android:id="@+id/ivCamera"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="@dimen/_35mdp"
+                    android:layout_height="@dimen/_35mdp"
                     android:layout_centerVertical="true"
                     android:layout_centerHorizontal="true"
                     android:layout_toRightOf="@id/ivGalery"
@@ -104,15 +96,14 @@
         <RelativeLayout
             android:id="@+id/relCat"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="15dp"
+            android:layout_height="@dimen/_30mdp"
+            android:layout_marginTop="@dimen/_15mdp"
             android:background="@drawable/bordertrans">
 
             <Spinner
                 android:id="@+id/spdivisi"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="@dimen/_35mdp"
                 android:gravity="center_vertical"
                 android:spinnerMode="dropdown"/>
 
@@ -121,12 +112,11 @@
         <LinearLayout
             android:id="@+id/LlBirthday"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="@dimen/_35mdp"
             android:weightSum="3"
             android:background="@drawable/bordertrans"
             android:layout_below="@id/etusername"
-            android:layout_marginTop="15dp"
-            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="@dimen/_15mdp"
             android:orientation="horizontal">
 
             <EditText
@@ -136,22 +126,23 @@
                 android:layout_weight="3"
                 android:background="@null"
                 android:inputType="date"
-                android:textSize="14sp"
-                android:layout_marginLeft="10sp"
+                android:layout_marginLeft="@dimen/_5mdp"
+                android:textSize="@dimen/_12font_mdp"
                 android:hint="dd/mm/yyy"/>
 
             <View
                 android:id="@+id/v3"
-                android:layout_width="2dp"
+                android:layout_width="@dimen/_2mdp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="@dimen/_10mdp"
                 android:background="@color/grey_400" />
 
             <ImageView
                 android:id="@+id/imgtgl"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_margin="10dp"
+                android:layout_width="@dimen/_30mdp"
+                android:layout_height="@dimen/_30mdp"
+                android:layout_margin="@dimen/_10mdp"
+                android:layout_gravity="center_vertical"
                 android:background="@drawable/ic_calendar" />
 
         </LinearLayout>
@@ -162,14 +153,14 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="15dp">
+            android:layout_marginTop="@dimen/_15mdp">
 
             <TextView
                 android:id="@+id/tvjnklm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Jenis Kelamin"
-                android:textSize="15sp"/>
+                android:textSize="@dimen/_15font_mdp"/>
         <RadioGroup
             android:padding="5px"
             android:layout_height="wrap_content"
@@ -214,7 +205,7 @@
             <EditText
                 android:id="@+id/etalamat"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_40mdp"
                 android:imeOptions="flagNoExtractUi"
                 android:hint="Alamat"
                 android:inputType="text" />
@@ -229,7 +220,7 @@
                 android:id="@+id/etpassword"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/_15mdp"
                 android:imeOptions="flagNoExtractUi"
                 android:hint="Password"
                 android:inputType="textPassword"
@@ -245,9 +236,9 @@
 
             <Button
                 android:id="@+id/btnsimpan"
-                android:layout_width="150dp"
-                android:layout_height="50dp"
-                android:layout_margin="22dp"
+                android:layout_width="@dimen/_150mdp"
+                android:layout_height="@dimen/_35mdp"
+                android:layout_margin="@dimen/_20mdp"
                 android:text="DAFTAR"
                 android:textAllCaps="false"
                 android:textColor="#fff"
