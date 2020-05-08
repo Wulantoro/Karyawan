@@ -573,9 +573,6 @@ public class EditKaryawanActivity extends AppCompatActivity {
 
                                 Karyawan karyawan = gson.fromJson(jsonObject.toString(), Karyawan.class);
 
-                                //Log.e(TAG, "jsonObject "+jsonObject.toString(1));
-
-                                //rggender.che
 
                                 if (karyawan.getGenderKrw().equalsIgnoreCase("perempuan")){
                                     rggender.check(R.id.rbfemale);
@@ -616,6 +613,9 @@ public class EditKaryawanActivity extends AppCompatActivity {
         JSONObject jsonObject = new JSONObject();
 
         try {
+            int selectedId = rggender.getCheckedRadioButtonId();
+            rbgender = findViewById(selectedId);
+
             JSONArray newArr = new JSONArray();
             jsonObject.put("id_krw", id_krw);
             jsonObject.put("nama_krw", etnama.getText().toString());

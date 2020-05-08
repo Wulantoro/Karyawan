@@ -157,4 +157,8 @@ public class Karyawan implements Parcelable
         return 0;
     }
 
+    public String toString() {
+        return this.getGenderKrw();
+    }
+
 }
