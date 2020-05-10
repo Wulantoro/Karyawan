@@ -171,12 +171,12 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:src="@drawable/user"
+                    android:src="@drawable/form"
                     android:layout_width="@dimen/_70mdp"
                     android:layout_height="@dimen/_70mdp"/>
 
                 <TextView
-                    android:text="Profil"
+                    android:text="Form"
                     android:layout_gravity="center_horizontal"
                     android:textSize="@dimen/_15font_mdp"
                     android:textStyle="bold"

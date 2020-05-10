@@ -18,6 +18,7 @@ public class HomeHrdActivity extends AppCompatActivity {
     private ImageView ivprofil;
     private ImageView ivarsip;
     private ImageView ivabsent;
+    private ImageView ivapprove;
 
     public SharedPreferences pref, prf;
 
@@ -34,6 +35,7 @@ public class HomeHrdActivity extends AppCompatActivity {
         ivprofil = findViewById(R.id.ivprofil);
         ivarsip = findViewById(R.id.ivarsip);
         ivabsent = findViewById(R.id.ivabsent);
+        ivapprove = findViewById(R.id.ivapprove);
 
         pref = getSharedPreferences("Id_krw", MODE_PRIVATE);
         id_krw = pref.getString("id_krw", null);
@@ -82,6 +84,15 @@ public class HomeHrdActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putString("id_krw", id_krw);
                 editor.commit();
+                startActivity(intent);
+            }
+        });
+
+        ivapprove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ApprovalActivity.class);
+//                pref = getSharedPreferences("Id_krw", )
                 startActivity(intent);
             }
         });

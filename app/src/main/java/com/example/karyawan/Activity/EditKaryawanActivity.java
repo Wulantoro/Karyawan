@@ -124,6 +124,9 @@ public class EditKaryawanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_karyawan);
 
+        int selectedId = rggender.getCheckedRadioButtonId();
+        rbgender = findViewById(selectedId);
+
 
 
         gson = new Gson();
@@ -613,8 +616,7 @@ public class EditKaryawanActivity extends AppCompatActivity {
         JSONObject jsonObject = new JSONObject();
 
         try {
-            int selectedId = rggender.getCheckedRadioButtonId();
-            rbgender = findViewById(selectedId);
+
 
             JSONArray newArr = new JSONArray();
             jsonObject.put("id_krw", id_krw);
@@ -627,7 +629,8 @@ public class EditKaryawanActivity extends AppCompatActivity {
             jsonObject.put("gender_krw", rbgender.getText().toString());
             jsonObject.put("tgllahir_krw", ettgl.getText().toString());
             jsonObject.put("image_name", id_krw2+photoExt);
-            jsonObject.put("image_file", encodePhoto);
+//            jsonObject.put("image_file", encodePhoto);
+            jsonObject.put("image_file", id_krw2);
 
             newArr.put(jsonObject);
 

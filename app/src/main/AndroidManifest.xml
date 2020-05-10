@@ -14,7 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.EditKaryawanActivity"></activity>
+        <activity android:name=".Activity.FormActivity"></activity>
+        <activity android:name=".Activity.SakitActivity" />
+        <activity android:name=".Activity.IzinActivity" />
+        <activity android:name=".Activity.CutiActivity" />
+        <activity android:name=".Activity.ApprovalActivity" />
+        <activity android:name=".Activity.EditKaryawanActivity" />
         <activity android:name=".Activity.DetailKaryawanActivity" />
         <activity android:name=".Activity.KaryawanActivity" />
         <activity android:name=".Activity.AbsenActivity" />
