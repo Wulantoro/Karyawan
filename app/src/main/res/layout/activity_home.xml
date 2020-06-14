@@ -171,6 +171,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
+                    android:id="@+id/ivform"
                     android:src="@drawable/form"
                     android:layout_width="@dimen/_70mdp"
                     android:layout_height="@dimen/_70mdp"/>

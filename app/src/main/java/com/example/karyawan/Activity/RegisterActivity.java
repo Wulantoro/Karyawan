@@ -126,7 +126,10 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                simpanProfil();
+
+
+                    simpanProfil();
+
             }
         });
 
@@ -437,56 +440,73 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void simpanProfil() {
-        int selectedId = rggender.getCheckedRadioButtonId();
-        rbgender = (RadioButton) findViewById(selectedId);
 
-        JSONObject jsonObject = new JSONObject();
+        if (etnama.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Nama wajib diisi", Toast.LENGTH_SHORT).show();
+        }else if (etusername.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Username wajib diisi", Toast.LENGTH_SHORT).show();
+        } else if (ettelp.getText().toString().isEmpty()) {
+            Toast.makeText(this, "No telp wajib diisi", Toast.LENGTH_SHORT).show();
+        } else if (etalamat.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Alamat wajib dissi", Toast.LENGTH_SHORT).show();
+        } else if (etpassword.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Password wajib diisi", Toast.LENGTH_SHORT).show();
+        } else if (ettgl.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Tanggal lahir wajib diisi", Toast.LENGTH_SHORT).show();
+        } else if (rggender.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "Jenis Kelamin Wajib diisi", Toast.LENGTH_SHORT).show();
+        }else {
+            int selectedId = rggender.getCheckedRadioButtonId();
+            rbgender = (RadioButton) findViewById(selectedId);
 
-        try {
-            JSONArray newArr = new JSONArray();
-            jsonObject.put("nama_krw", etnama.getText().toString());
-            jsonObject.put("username_krw", etusername.getText().toString());
-            jsonObject.put("password", etpassword.getText().toString());
-            jsonObject.put("divisi", spdivisi.getItemAtPosition(spdivisi.getSelectedItemPosition()).toString());
-            jsonObject.put("telp_krw", ettelp.getText().toString());
-            jsonObject.put("alamat_krw", etalamat.getText().toString());
-            jsonObject.put("gender_krw", rbgender.getText().toString());
-            jsonObject.put("tgllahir_krw", ettgl.getText().toString());
-            jsonObject.put("image_name", id_krw+photoExt);
-            jsonObject.put("image_file", encodePhoto);
+            JSONObject jsonObject = new JSONObject();
 
-            newArr.put(jsonObject);
+            try {
+                JSONArray newArr = new JSONArray();
+                jsonObject.put("nama_krw", etnama.getText().toString());
+                jsonObject.put("username_krw", etusername.getText().toString());
+                jsonObject.put("password", etpassword.getText().toString());
+                jsonObject.put("divisi", spdivisi.getItemAtPosition(spdivisi.getSelectedItemPosition()).toString());
+                jsonObject.put("telp_krw", ettelp.getText().toString());
+                jsonObject.put("alamat_krw", etalamat.getText().toString());
+                jsonObject.put("gender_krw", rbgender.getText().toString());
+                jsonObject.put("tgllahir_krw", ettgl.getText().toString());
+                jsonObject.put("image_name", id_krw + photoExt);
+                jsonObject.put("image_file", encodePhoto);
 
-            Log.e(TAG, "coba input = " + newArr.toString(1));
+                newArr.put(jsonObject);
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+                Log.e(TAG, "coba input = " + newArr.toString(1));
 
-        AndroidNetworking.post(GlobalVars.BASE_IP + "karyawan")
-                .addJSONObjectBody(jsonObject)
-                .setPriority(Priority.MEDIUM)
-                .build()
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            String message = response.getString("message");
-                            Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_SHORT).show();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            AndroidNetworking.post(GlobalVars.BASE_IP + "karyawan")
+                    .addJSONObjectBody(jsonObject)
+                    .setPriority(Priority.MEDIUM)
+                    .build()
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                String message = response.getString("message");
+                                Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_SHORT).show();
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Toast.makeText(getApplicationContext(), "JSONExceptions" + e, Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                Toast.makeText(getApplicationContext(), "JSONExceptions" + e, Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onError(ANError anError) {
-                        Toast.makeText(getApplicationContext(), "Gagal menambah data", Toast.LENGTH_SHORT).show();
+                        @Override
+                        public void onError(ANError anError) {
+                            Toast.makeText(getApplicationContext(), "Gagal menambah data", Toast.LENGTH_SHORT).show();
 
-                    }
-                });
+                        }
+                    });
+        }
     }
 }

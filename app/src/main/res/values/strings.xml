@@ -3,4 +3,6 @@
     <string name="cuti">Cuti</string>
     <string name="izin">Izin</string>
     <string name="sakit">Sakit</string>
+    <string name="tanggal_selesai">Tanggal Selesai</string>
+    <string name="tanggal_mulai">Tanggal Mulai</string>
 </resources>

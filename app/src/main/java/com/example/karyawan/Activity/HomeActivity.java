@@ -16,6 +16,7 @@ public class HomeActivity extends AppCompatActivity {
     private ImageView ivuser;
     private ImageView ivabsent;
     private ImageView ivattendance;
+    private ImageView ivform;
     public SharedPreferences pref, prf;
 
     String id_krw;
@@ -30,6 +31,7 @@ public class HomeActivity extends AppCompatActivity {
         ivuser = findViewById(R.id.ivuser);
         ivabsent = findViewById(R.id.ivabsent);
         ivattendance = findViewById(R.id.ivattendance);
+        ivform = findViewById(R.id.ivform);
 
         pref = getSharedPreferences("Id_krw", MODE_PRIVATE);
         id_krw = pref.getString("id_krw", null);
@@ -73,6 +75,14 @@ public class HomeActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putString("id_krw", id_krw);
                 editor.commit();
+                startActivity(intent);
+            }
+        });
+
+        ivform.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), FormActivity.class);
                 startActivity(intent);
             }
         });
