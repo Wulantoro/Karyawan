@@ -5,4 +5,6 @@
     <string name="sakit">Sakit</string>
     <string name="tanggal_selesai">Tanggal Selesai</string>
     <string name="tanggal_mulai">Tanggal Mulai</string>
+
+    <string name="base64_info">data:image/jpeg;base64,</string>
 </resources>

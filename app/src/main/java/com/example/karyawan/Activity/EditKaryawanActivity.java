@@ -124,11 +124,6 @@ public class EditKaryawanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_karyawan);
 
-        int selectedId = rggender.getCheckedRadioButtonId();
-        rbgender = findViewById(selectedId);
-
-
-
         gson = new Gson();
         imgUser = findViewById(R.id.imgUser);
         etnama = findViewById(R.id.etnama);
@@ -149,7 +144,6 @@ public class EditKaryawanActivity extends AppCompatActivity {
         pref = getSharedPreferences("Id_krw", MODE_PRIVATE);
         id_krw = pref.getString("id_krw", null);
         Log.e(TAG, "id karyawan = " + id_krw);
-
 
         converterRadioGroup = findViewById(R.id.radio_group);
         converterRadioGroup.check(R.id.radio_file);
@@ -193,8 +187,6 @@ public class EditKaryawanActivity extends AppCompatActivity {
 //        getDivisi();
 
         loadProfil();
-
-
     }
 
     private void pickImageFromSource(Sources source) {
@@ -598,6 +590,8 @@ public class EditKaryawanActivity extends AppCompatActivity {
                                         .dontAnimate()
                                         .apply(RequestOptions.circleCropTransform())
                                         .into(imgUser);
+
+
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -612,6 +606,9 @@ public class EditKaryawanActivity extends AppCompatActivity {
     }
 
     private void updateProfil() {
+
+        int selectedId = rggender.getCheckedRadioButtonId();
+        rbgender = findViewById(selectedId);
 
         JSONObject jsonObject = new JSONObject();
 
@@ -628,9 +625,8 @@ public class EditKaryawanActivity extends AppCompatActivity {
             jsonObject.put("alamat_krw", etalamat.getText().toString());
             jsonObject.put("gender_krw", rbgender.getText().toString());
             jsonObject.put("tgllahir_krw", ettgl.getText().toString());
-            jsonObject.put("image_name", id_krw2+photoExt);
-//            jsonObject.put("image_file", encodePhoto);
-            jsonObject.put("image_file", id_krw2);
+            jsonObject.put("image_name", id_krw2);
+            jsonObject.put("image_file", encodePhoto);
 
             newArr.put(jsonObject);
 
@@ -663,6 +659,60 @@ public class EditKaryawanActivity extends AppCompatActivity {
                     public void onError(ANError anError) {
                         Toast.makeText(getApplicationContext(), "Gagal mengubah data", Toast.LENGTH_SHORT).show();
 //                        Toast.makeText(getApplicationContext(), anError.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+    }
+
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        final JSONObject jsonObject = new JSONObject();
+
+        try {
+            jsonObject.put("id_krw", id_krw);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        AndroidNetworking.get(BASE_IP + "karyawan?id_krw=" + id_krw)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            Log.e(TAG, "response = " + response.toString(1));
+
+                            String message = response.getString("message");
+
+                            if (message.equals("Karyawan Ditemukan")) {
+                                String records = response.getString("data");
+                                JSONObject jsonObject = new JSONObject(records);
+
+                                Karyawan karyawan = gson.fromJson(jsonObject.toString(), Karyawan.class);
+
+                                if (karyawan.getDivisi().equalsIgnoreCase("HRD")) {
+                                    Intent intent = new Intent(getApplicationContext(), HomeHrdActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    finish();
+                                } else {
+                                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    finish();
+                                }
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
 
                     }
                 });

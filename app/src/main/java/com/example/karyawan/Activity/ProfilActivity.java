@@ -20,6 +20,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.karyawan.Model.Karyawan;
 import com.example.karyawan.R;
 import com.example.karyawan.Utils.GlobalVars;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,6 +29,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+
+import static com.example.karyawan.Utils.GlobalVars.BASE_IP;
 
 public class ProfilActivity extends AppCompatActivity {
 
@@ -38,6 +41,8 @@ public class ProfilActivity extends AppCompatActivity {
     private TextView tvtelp1;
     private CircleImageView imgprofil;
     private ImageView ivedit;
+
+    private Gson gson;
 
 
     public SharedPreferences pref, prf;
@@ -52,6 +57,8 @@ public class ProfilActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profil);
+
+        Gson gson = new Gson();
 
         tvnama = findViewById(R.id.tvnama);
         tvtgllahir2 = findViewById(R.id.tvtgllahir2);
@@ -83,6 +90,9 @@ public class ProfilActivity extends AppCompatActivity {
         });
 
         loadProfil();
+
+//        back
+//        onBackPressed();
     }
 
     private void loadProfil() {
@@ -133,5 +143,65 @@ public class ProfilActivity extends AppCompatActivity {
 
                     }
                 });
+    }
+
+    public void onBackPressed() {
+
+        Intent a = new Intent(Intent.ACTION_MAIN);
+        a.addCategory(Intent.CATEGORY_HOME);
+        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(a);
+
+//        super.onBackPressed();
+//
+//        final JSONObject jsonObject = new JSONObject();
+//
+//        try {
+//            jsonObject.put("id_krw", id_krw);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//
+//        AndroidNetworking.get(BASE_IP + "karyawan?id_krw=" + id_krw)
+//                .setPriority(Priority.MEDIUM)
+//                .build()
+//                .getAsJSONObject(new JSONObjectRequestListener() {
+//                    @Override
+//                    public void onResponse(JSONObject response) {
+//
+//                        try {
+//                            Log.e(TAG, "response = " + response.toString(1));
+//
+//                            String message = response.getString("message");
+//
+//                            if (message.equals("Karyawan Ditemukan")) {
+//                                String records = response.getString("data");
+//                                JSONObject jsonObject = new JSONObject(records);
+//
+//                                Karyawan karyawan = gson.fromJson(jsonObject.toString(), Karyawan.class);
+//
+//                                if (karyawan.getDivisi().equalsIgnoreCase("HRD")) {
+//                                    Intent intent = new Intent(getApplicationContext(), HomeHrdActivity.class);
+//                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                                    finish();
+//                                } else {
+//                                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+//                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                                    finish();
+//                                }
+//                            }
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onError(ANError anError) {
+//
+//                    }
+//                });
+
     }
 }
