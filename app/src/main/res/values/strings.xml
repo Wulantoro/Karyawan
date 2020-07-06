@@ -5,6 +5,10 @@
     <string name="sakit">Sakit</string>
     <string name="tanggal_selesai">Tanggal Selesai</string>
     <string name="tanggal_mulai">Tanggal Mulai</string>
+    <string name="nama">Nama</string>
 
     <string name="base64_info">data:image/jpeg;base64,</string>
+    <string name="status">Status</string>
+    <string name="tanggal_input">"Tanggal Input "</string>
+    <string name="lama_hari">Lama Hari</string>
 </resources>

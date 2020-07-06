@@ -14,7 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.FormActivity"></activity>
+        <activity android:name=".Activity.ManagerActivity"></activity>
+        <activity android:name=".Activity.DetailCutiActivity" />
+        <activity android:name=".Activity.FormCutiActivity" />
+        <activity android:name=".Activity.FormActivity" />
         <activity android:name=".Activity.SakitActivity" />
         <activity android:name=".Activity.IzinActivity" />
         <activity android:name=".Activity.CutiActivity" />

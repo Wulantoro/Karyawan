@@ -83,6 +83,11 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), FormActivity.class);
+                pref = getSharedPreferences("Id_krw", MODE_PRIVATE);
+                id_krw =pref.getString("id_krw", null);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("id_krw", id_krw);
+                editor.commit();
                 startActivity(intent);
             }
         });

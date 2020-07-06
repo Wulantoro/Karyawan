@@ -39,6 +39,7 @@ public class ProfilActivity extends AppCompatActivity {
     private TextView tvjnskelamin;
     private TextView tvalamat2;
     private TextView tvtelp1;
+    private TextView tvdivisi;
     private CircleImageView imgprofil;
     private ImageView ivedit;
 
@@ -65,6 +66,7 @@ public class ProfilActivity extends AppCompatActivity {
         tvjnskelamin = findViewById(R.id.tvjnskelamin);
         tvalamat2 = findViewById(R.id.tvalamat2);
         tvtelp1 = findViewById(R.id.tvtelp1);
+        tvdivisi = findViewById(R.id.tvdivisi);
         imgprofil = findViewById(R.id.imgprofil);
         ivedit = findViewById(R.id.ivedit);
 
@@ -76,10 +78,8 @@ public class ProfilActivity extends AppCompatActivity {
         ivedit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Karyawan karyawan = new Karyawan();
-                Intent intent = new Intent(getApplicationContext(), EditKaryawanActivity.class);
-//                intent.putExtra("edit", karyawan);
 
+                Intent intent = new Intent(getApplicationContext(), EditKaryawanActivity.class);
                 pref = getSharedPreferences("Id_krw", MODE_PRIVATE);
                 id_krw =pref.getString("id_krw", null);
                 SharedPreferences.Editor editor = pref.edit();
@@ -90,9 +90,6 @@ public class ProfilActivity extends AppCompatActivity {
         });
 
         loadProfil();
-
-//        back
-//        onBackPressed();
     }
 
     private void loadProfil() {
@@ -124,12 +121,12 @@ public class ProfilActivity extends AppCompatActivity {
                                 tvtgllahir2.setText(jsonObject.getString("tgllahir_krw"));
                                 tvtelp1.setText(jsonObject.getString("telp_krw"));
                                 tvalamat2.setText(jsonObject.getString("alamat_krw"));
+                                tvdivisi.setText(jsonObject.getString("divisi"));
 
                                 Glide.with(getApplicationContext())
                                         .load(jsonObject.getString("image_file"))
                                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                                         .skipMemoryCache(true)
-//                                        .centerCrop()
                                         .dontAnimate()
                                         .into(imgprofil);
                             }
@@ -147,61 +144,15 @@ public class ProfilActivity extends AppCompatActivity {
 
     public void onBackPressed() {
 
-        Intent a = new Intent(Intent.ACTION_MAIN);
-        a.addCategory(Intent.CATEGORY_HOME);
-        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(a);
+        if (tvdivisi.getText().toString().equalsIgnoreCase("HRD")) {
 
-//        super.onBackPressed();
-//
-//        final JSONObject jsonObject = new JSONObject();
-//
-//        try {
-//            jsonObject.put("id_krw", id_krw);
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//
-//        AndroidNetworking.get(BASE_IP + "karyawan?id_krw=" + id_krw)
-//                .setPriority(Priority.MEDIUM)
-//                .build()
-//                .getAsJSONObject(new JSONObjectRequestListener() {
-//                    @Override
-//                    public void onResponse(JSONObject response) {
-//
-//                        try {
-//                            Log.e(TAG, "response = " + response.toString(1));
-//
-//                            String message = response.getString("message");
-//
-//                            if (message.equals("Karyawan Ditemukan")) {
-//                                String records = response.getString("data");
-//                                JSONObject jsonObject = new JSONObject(records);
-//
-//                                Karyawan karyawan = gson.fromJson(jsonObject.toString(), Karyawan.class);
-//
-//                                if (karyawan.getDivisi().equalsIgnoreCase("HRD")) {
-//                                    Intent intent = new Intent(getApplicationContext(), HomeHrdActivity.class);
-//                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                                    finish();
-//                                } else {
-//                                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-//                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                                    finish();
-//                                }
-//                            }
-//                        } catch (Exception e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onError(ANError anError) {
-//
-//                    }
-//                });
-
+            Intent intent = new Intent(getApplicationContext(), HomeHrdActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 }

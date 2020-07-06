@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.FormCutiActivity">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/_10mdp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvjenis"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_12font_mdp"
+                    android:text="Jenis"/>
+
+            <RelativeLayout
+                android:id="@+id/rlJenis"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35mdp"
+                android:layout_below="@id/tvjenis"
+                android:layout_marginTop="@dimen/_5mdp"
+                android:background="@drawable/bordertrans">
+
+                <Spinner
+                    android:id="@+id/spJenis"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40mdp"
+                    android:gravity="center"
+                    android:spinnerMode="dropdown"
+                    android:textSize="@dimen/_13font_mdp" />
+
+            </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relMulai"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15mdp">
+            <TextView
+                android:id="@+id/tvmulai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_12font_mdp"
+                android:text="@string/tanggal_mulai" />
+
+                <LinearLayout
+                    android:id="@+id/LlBirthday"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35mdp"
+                    android:weightSum="3"
+                    android:layout_below="@id/tvmulai"
+                    android:background="@drawable/bordertrans"
+                    android:layout_marginTop="@dimen/_5mdp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/etTglmulai"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/_5mdp"
+                        android:layout_weight="3"
+                        android:background="@null"
+                        android:hint="dd/mm/yyy"
+                        android:inputType="date"
+                        android:textSize="@dimen/_13font_mdp" />
+
+                    <View
+                        android:id="@+id/v3"
+                        android:layout_width="@dimen/_1mdp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5mdp"
+                        android:background="@color/grey_400" />
+
+                    <ImageView
+                        android:id="@+id/imgTglmulai"
+                        android:layout_width="@dimen/_25mdp"
+                        android:layout_height="@dimen/_25mdp"
+                        android:layout_margin="@dimen/_5mdp"
+                        android:background="@drawable/ic_calendar" />
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relSelesai"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15mdp">
+                <TextView
+                    android:id="@+id/tvselesai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_12font_mdp"
+                    android:text="@string/tanggal_selesai" />
+
+                <LinearLayout
+                    android:id="@+id/LLselesai"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35mdp"
+                    android:weightSum="3"
+                    android:layout_marginTop="@dimen/_5mdp"
+                    android:layout_below="@id/tvselesai"
+                    android:background="@drawable/bordertrans"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/etTglselesai"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/_5mdp"
+                        android:layout_weight="3"
+                        android:background="@null"
+                        android:hint="dd/mm/yyy"
+                        android:inputType="date"
+                        android:textSize="@dimen/_13font_mdp" />
+
+                    <View
+                        android:id="@+id/v1"
+                        android:layout_width="@dimen/_1mdp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5mdp"
+                        android:background="@color/grey_400" />
+
+                    <ImageView
+                        android:id="@+id/ivTglselesai"
+                        android:layout_width="@dimen/_25mdp"
+                        android:layout_height="@dimen/_25mdp"
+                        android:layout_margin="@dimen/_5mdp"
+                        android:background="@drawable/ic_calendar" />
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/rlLama"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_15mdp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_12font_mdp"
+                    android:text="Lama Hari : "/>
+
+                <TextView
+                    android:id="@+id/tvlama"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_12font_mdp"
+                    android:layout_marginLeft="@dimen/_5mdp"
+                    android:text="5"/>
+
+            </LinearLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tiBody1"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:boxStrokeColor="@color/greenMeetAp"
+                android:layout_marginTop="@dimen/_10mdp"
+                app:errorEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/keterangan"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_100mdp"
+                    android:gravity="top"
+                    android:hint="Keterangan" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btnSimpan"
+                android:layout_width="@dimen/_170mdp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_button_primary"
+                android:layout_gravity="center_horizontal"
+                android:text="Simpan"
+                android:layout_marginTop="@dimen/_15mdp"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

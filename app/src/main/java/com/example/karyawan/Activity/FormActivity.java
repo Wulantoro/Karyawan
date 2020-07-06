@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -55,6 +56,9 @@ public class FormActivity extends AppCompatActivity {
 
     private ApproveMenu menu;
     private Intent intent;
+    public SharedPreferences pref, prf;
+
+    String id_krw;
 
 
     private String[] jenis = {
@@ -70,45 +74,17 @@ public class FormActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
 
-//        spJenis = findViewById(R.id.spJenis);
-//        imgTglmulai = findViewById(R.id.imgTglmulai);
-//        etTglmulai = findViewById(R.id.etTglmulai);
-//        etTglselesai = findViewById(R.id.etTglselesai);
-//        ivTglselesai = findViewById(R.id.ivTglselesai);
-//        tvlama = findViewById(R.id.tvlama);
-//        btnSimpan = findViewById(R.id.btnSimpan);
+        pref = getSharedPreferences("Id_krw", MODE_PRIVATE);
+        id_krw = pref.getString("id_krw", null);
+        Log.e(TAG, "id karyawan = " + id_krw);
+
 
         rvMenu = findViewById(R.id.rvMenu);
         parentLayout = findViewById(R.id.parentLayout);
 
         approveMenu();
 
-        // spinner jenis
-//        spJenis.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, jenis));
 
-        //function tanggal mulai
-//        imgTglmulai.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                tanggalMulai();
-//
-//            }
-//        });
-//
-//        //function tanggal selesai
-//        ivTglselesai.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                tanggalSelesai();
-//            }
-//        });
-//
-//        btnSimpan.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
     }
 
 
@@ -146,6 +122,11 @@ public class FormActivity extends AppCompatActivity {
 
     private void intentToCuti() {
         intent = new Intent(getApplicationContext(), CutiActivity.class);
+        pref = getSharedPreferences("Id_krw", MODE_PRIVATE);
+        id_krw =pref.getString("id_krw", null);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("id_krw", id_krw);
+        editor.commit();
         startActivity(intent);
     }
 
@@ -159,117 +140,7 @@ public class FormActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //function tanggalMulai
-//    private void tanggalMulai(){
-//        final SpinnerPickerDialog spinnerPickerDialog = new SpinnerPickerDialog();
-//        spinnerPickerDialog.setContext(this);
-//        spinnerPickerDialog.setAllColor(ContextCompat.getColor(this, R.color.greenMeetAp));
-//        spinnerPickerDialog.setmTextColor(Color.BLACK);
-//        spinnerPickerDialog.setArrowButton(true);
-//        spinnerPickerDialog.setOnDialogListener(new SpinnerPickerDialog.OnDialogListener() {
-//            @Override
-//            public void onSetDate(int month, int day, int year) {
-//                month = month + 1;
-////                String date = day + "-" + month + "-" + year;
-//                String date = year + "-" + month + "-" + day;
-//                DateFormat dp_medium = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.UK);
-//                String dp_medium_uk_strg = dp_medium.format(Calendar.getInstance().getTime());
-//                etTglmulai.setText(date);
-//
-//            }
-//
-//            @Override
-//            public void onCancel() {
-//
-//            }
-//
-//            @Override
-//            public void onDismiss() {
-//
-//            }
-//        });
-//
-//        spinnerPickerDialog.show(this.getSupportFragmentManager(), "");
-//    }
-//
-//    //function tanggal selesai
-//    private void tanggalSelesai() {
-//        final SpinnerPickerDialog spinnerPickerDialog = new SpinnerPickerDialog();
-//        spinnerPickerDialog.setContext(this);
-//        spinnerPickerDialog.setAllColor(ContextCompat.getColor(this, R.color.greenMeetAp));
-//        spinnerPickerDialog.setmTextColor(Color.BLACK);
-//        spinnerPickerDialog.setArrowButton(true);
-//        spinnerPickerDialog.setOnDialogListener(new SpinnerPickerDialog.OnDialogListener() {
-//            @Override
-//            public void onSetDate(int month, int day, int year) {
-//                month = month + 1;
-//                String date = year + "-" + month + "-" + day;
-//                DateFormat dp_medium = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.UK);
-//                String dp_medium_uk_strg = dp_medium.format(Calendar.getInstance().getTime());
-//                etTglselesai.setText(date);
-//                lamaHari();
-//            }
-//
-//            @Override
-//            public void onCancel() {
-//
-//            }
-//
-//            @Override
-//            public void onDismiss() {
-//
-//            }
-//        });
-//
-//        spinnerPickerDialog.show(this.getSupportFragmentManager(), "");
-//
-//    }
-//
-//    //function lama hari
-//    private void lamaHari() {
-//        String stglAwal = etTglmulai.getText().toString();
-//        String stglAkhir = etTglselesai.getText().toString();
-//        DateFormat dateAwal = new SimpleDateFormat("yyyy-MM-dd");
-//        DateFormat dateAkhir = new SimpleDateFormat("yyyy-MM-dd");
-//
-//        try {
-//            Date tglAwal = dateAwal.parse(stglAwal);
-//            Date tglAkhir = dateAkhir.parse(stglAkhir);
-//
-//            Date TGLAwal = tglAwal;
-//            Date TGLAkhir = tglAkhir;
-//            Calendar cal1 = Calendar.getInstance();
-//            cal1.setTime(TGLAwal);
-//            Calendar cal2 = Calendar.getInstance();
-//            cal2.setTime(TGLAkhir);
-//
-//            String hasil = String.valueOf(daysBetween(cal1, cal2));
-////            tvlama.setText(hasil);
-//
-//            int numberOfDays = 1;
-//            while (cal1.before(cal2)) {
-//                if ((Calendar.SATURDAY != cal1.get(Calendar.DAY_OF_WEEK)) && (Calendar.SUNDAY != cal1.get(Calendar.DAY_OF_WEEK))) {
-//                     numberOfDays++;
-//                }
-//                cal1.add(Calendar.DATE, 1);
-//            }
-//            tvlama.setText(String.valueOf(numberOfDays));
-//
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
-//
-//    private static long daysBetween(Calendar tanggalAwal, Calendar tanggalAkhir) {
-//        long lama = 0;
-//        Calendar tanggal = (Calendar) tanggalAwal.clone();
-//        while (tanggal.before(tanggalAkhir)) {
-//            tanggal.add(Calendar.DAY_OF_MONTH, 1);
-//            lama++;
-//        }
-//        return lama;
-//    }
+
 
 
 }

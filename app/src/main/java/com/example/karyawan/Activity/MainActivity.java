@@ -98,78 +98,85 @@ public class MainActivity extends AppCompatActivity {
 
     private void checkLogin() {
 
-        final JSONObject jsonObject = new JSONObject();
+        if (etusername.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Username tidak boleh kosong", Toast.LENGTH_SHORT).show();
+        } else if (etpassword.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Password tidak boleh kosong", Toast.LENGTH_SHORT).show();
+        } else {
 
-        try {
-            jsonObject.put("username_krw", etusername.getText().toString());
-            jsonObject.put("password", etpassword.getText().toString());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+            final JSONObject jsonObject = new JSONObject();
 
-        AndroidNetworking.post(GlobalVars.BASE_IP + "login")
-                //.addJSONObjectBody(jsonObject)
-                .addBodyParameter("username_krw", etusername.getText().toString())
-                .addBodyParameter("password", etpassword.getText().toString())
-                .setPriority(Priority.MEDIUM)
-                .build()
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        List<Karyawan> results = new ArrayList<>();
+            try {
+                jsonObject.put("username_krw", etusername.getText().toString());
+                jsonObject.put("password", etpassword.getText().toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            AndroidNetworking.post(GlobalVars.BASE_IP + "login")
+                    //.addJSONObjectBody(jsonObject)
+                    .addBodyParameter("username_krw", etusername.getText().toString())
+                    .addBodyParameter("password", etpassword.getText().toString())
+                    .setPriority(Priority.MEDIUM)
+                    .build()
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            List<Karyawan> results = new ArrayList<>();
 //                        Log.e(TAG, "onResponse11111111 = " +response);
-                        try {
-                            String message = response.getString("message");
-                            String success = response.getString("success");
-                            Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+                            try {
+                                String message = response.getString("message");
+                                String success = response.getString("success");
+                                Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
 
-                            if (success.equals("1")) {
+                                if (success.equals("1")) {
 
-                                String user = response.getString("data");
-                                JSONArray dataArr = new JSONArray(user);
+                                    String user = response.getString("data");
+                                    JSONArray dataArr = new JSONArray(user);
 //
-                                if (dataArr.length() > 0) {
-                                    for (int i = 0; i < dataArr.length(); i++) {
-                                        Karyawan karyawan = gson.fromJson(dataArr.getJSONObject(i).toString(), Karyawan.class);
-                                        results.add(karyawan);
+                                    if (dataArr.length() > 0) {
+                                        for (int i = 0; i < dataArr.length(); i++) {
+                                            Karyawan karyawan = gson.fromJson(dataArr.getJSONObject(i).toString(), Karyawan.class);
+                                            results.add(karyawan);
 
-                                        if (karyawan.getDivisi().equalsIgnoreCase("HRD")) {
-                                            Intent intent = new Intent(getApplicationContext(), HomeHrdActivity.class);
-                                            pref = getSharedPreferences("Id_krw", MODE_PRIVATE);
-                                            id_krw = karyawan.getIdKrw();
-                                            SharedPreferences.Editor editor = pref.edit();
-                                            editor.putString("id_krw", id_krw);
-                                            editor.commit();
-                                            startActivity(intent);
-                                        } else {
-                                            Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                                            pref = getSharedPreferences("Id_krw", MODE_PRIVATE);
-                                            id_krw = karyawan.getIdKrw();
-                                            SharedPreferences.Editor editor = pref.edit();
-                                            editor.putString("id_krw", id_krw);
-                                            editor.commit();
-                                            startActivity(intent);
+                                            if (karyawan.getDivisi().equalsIgnoreCase("HRD")) {
+                                                Intent intent = new Intent(getApplicationContext(), HomeHrdActivity.class);
+                                                pref = getSharedPreferences("Id_krw", MODE_PRIVATE);
+                                                id_krw = karyawan.getIdKrw();
+                                                SharedPreferences.Editor editor = pref.edit();
+                                                editor.putString("id_krw", id_krw);
+                                                editor.commit();
+                                                startActivity(intent);
+                                            } else {
+                                                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                                                pref = getSharedPreferences("Id_krw", MODE_PRIVATE);
+                                                id_krw = karyawan.getIdKrw();
+                                                SharedPreferences.Editor editor = pref.edit();
+                                                editor.putString("id_krw", id_krw);
+                                                editor.commit();
+                                                startActivity(intent);
+                                            }
+
                                         }
-
                                     }
+
+                                } else {
+                                    Toast.makeText(MainActivity.this, "Password atau Username salah", Toast.LENGTH_SHORT).show();
                                 }
-
-                            } else {
-                                Toast.makeText(MainActivity.this, "Password atau Username salah", Toast.LENGTH_SHORT).show();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                Toast.makeText(getApplicationContext(), "JSONExceptions" + e, Toast.LENGTH_SHORT).show();
                             }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Toast.makeText(getApplicationContext(), "JSONExceptions" + e, Toast.LENGTH_SHORT).show();
                         }
-                    }
 
-                    @Override
-                    public void onError(ANError anError) {
-                        Toast.makeText(MainActivity.this, "Gagal Login = " + anError, Toast.LENGTH_SHORT).show();
-                        Log.e(TAG, "error = " + anError);
+                        @Override
+                        public void onError(ANError anError) {
+                            Toast.makeText(MainActivity.this, "Gagal Login = " + anError, Toast.LENGTH_SHORT).show();
+                            Log.e(TAG, "error = " + anError);
 
-                    }
-                });
+                        }
+                    });
+        }
     }
 
 

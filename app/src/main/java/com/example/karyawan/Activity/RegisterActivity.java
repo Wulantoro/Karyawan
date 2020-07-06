@@ -1,5 +1,6 @@
 package com.example.karyawan.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -39,6 +40,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.karyawan.ImagePicker.RxImageConverter;
 import com.example.karyawan.ImagePicker.RxImagePicker;
 import com.example.karyawan.ImagePicker.Sources;
+import com.example.karyawan.Model.Level;
 import com.example.karyawan.R;
 import com.example.karyawan.Model.Divisi;
 import com.example.karyawan.Utils.GlobalVars;
@@ -78,6 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
     private ImageView imgtgl, imgUser;
     private TextView ettgl;
     private Spinner spdivisi;
+    private Spinner splevel;
     private Button btnsimpan;
     private EditText etnama, etusername, ettelp;
     private EditText etalamat, etpassword;
@@ -101,6 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Gson gson;
 
     private static String TAG = RegisterActivity.class.getSimpleName();
+    private String levId = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +115,7 @@ public class RegisterActivity extends AppCompatActivity {
         imgtgl = findViewById(R.id.imgtgl);
         ettgl = findViewById(R.id.ettgl);
         spdivisi = findViewById(R.id.spdivisi);
+        splevel = findViewById(R.id.splevel);
         imgAdd = findViewById(R.id.imgAdd);
         ivCamera = findViewById(R.id.ivCamera);
         imgUser = findViewById(R.id.imgUser);
@@ -125,11 +130,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnsimpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-
                     simpanProfil();
-
             }
         });
 
@@ -165,6 +166,9 @@ public class RegisterActivity extends AppCompatActivity {
 
         //get Divisi
         loadDiv();
+
+        //getLevel
+        loadLevel();
     }
 
     private void pickImageFromSource(Sources source) {
@@ -310,6 +314,79 @@ public class RegisterActivity extends AppCompatActivity {
                     .apply(RequestOptions.circleCropTransform())
                     .into(imgUser);
         }
+    }
+
+    private void loadLevel() {
+        AndroidNetworking.get(GlobalVars.BASE_IP + "level")
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        List<Level> result = new ArrayList<>();
+
+                        try {
+                            if (result != null)
+                                result.clear();
+
+                            String message = response.getString("message");
+
+                            if (message.equals("Level ditemukan")) {
+                                String records = response.getString("data");
+
+                                JSONArray jsonArray = new JSONArray(records);
+
+                                if (jsonArray.length() > 0) {
+                                    for (int i = 0; i < jsonArray.length(); i++) {
+                                        Level level = gson.fromJson(jsonArray.getJSONObject(i).toString(), Level.class);
+                                        result.add(level);
+                                    }
+                                    setLevel(result);
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(RegisterActivity.this, "JSONException " + e, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        Toast.makeText(RegisterActivity.this, "ANError" + anError, Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void setLevel(final List<Level> levelList) {
+        ArrayAdapter<Level> voteTypeAdapter = new ArrayAdapter<Level>(getApplicationContext(), R.layout.level_spinner, levelList) {
+
+            @Override
+            public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                TextView textView = (TextView) super.getDropDownView(position, convertView, parent);
+                textView.setText(levelList.get(position).getKd_level());
+                return textView;
+            }
+
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                TextView textView = (TextView) super.getView(position, convertView, parent);
+                textView.setText(levelList.get(position).getKd_level());
+                return textView;
+            }
+        };
+        splevel.setAdapter(voteTypeAdapter);
+        splevel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                levId = levelList.get(position).getId_level();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
 
