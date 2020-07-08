@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     public SharedPreferences pref, prf;
 
     String id_krw;
+    String divisi;
 
     private Gson gson;
 
@@ -147,7 +148,23 @@ public class MainActivity extends AppCompatActivity {
                                                 editor.putString("id_krw", id_krw);
                                                 editor.commit();
                                                 startActivity(intent);
-                                            } else {
+                                            } else if(karyawan.getLevel().equalsIgnoreCase("1")){
+                                                Intent intent = new Intent(getApplicationContext(), HomeMgrActivity.class);
+                                                pref = getSharedPreferences("Id_krw", MODE_PRIVATE);
+                                                id_krw = karyawan.getIdKrw();
+                                                SharedPreferences.Editor editor = pref.edit();
+                                                editor.putString("id_krw", id_krw);
+                                                editor.commit();
+
+                                                pref = getSharedPreferences("Divisi", MODE_PRIVATE);
+                                                divisi = karyawan.getDivisi();
+                                                SharedPreferences.Editor editor1 = pref.edit();
+                                                editor1.putString("divisi", divisi);
+                                                editor1.commit();
+
+                                                startActivity(intent);
+
+                                            } else{
                                                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                                                 pref = getSharedPreferences("Id_krw", MODE_PRIVATE);
                                                 id_krw = karyawan.getIdKrw();

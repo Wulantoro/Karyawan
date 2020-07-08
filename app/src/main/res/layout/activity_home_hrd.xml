@@ -13,8 +13,6 @@
             android:layout_width="match_parent"
             android:src="@drawable/bcg"
             android:layout_height="0dp">
-
-
         </RelativeLayout>
 
         <GridLayout
@@ -265,10 +263,5 @@
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
-
-
-
         </GridLayout>
-
-
     </LinearLayout>

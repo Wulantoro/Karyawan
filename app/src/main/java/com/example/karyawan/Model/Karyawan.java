@@ -17,6 +17,7 @@ public class Karyawan implements Parcelable
     private String image_file;
     private String image_name;
     private String password;
+    private String level;
     public final static Parcelable.Creator<Karyawan> CREATOR = new Parcelable.Creator<Karyawan>() {
 
 
@@ -46,6 +47,7 @@ public class Karyawan implements Parcelable
         this.image_file = ((String) in.readValue((String.class.getClassLoader())));
         this.image_name = ((String) in.readValue((String.class.getClassLoader())));
         this.password = ((String) in.readValue((String.class.getClassLoader())));
+        this.level = ((String) in.readValue((String.class.getClassLoader())));
     }
 
     public Karyawan() {
@@ -139,6 +141,14 @@ public class Karyawan implements Parcelable
         this.password = password;
     }
 
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(id_krw);
         dest.writeValue(nama_krw);
@@ -151,6 +161,7 @@ public class Karyawan implements Parcelable
         dest.writeValue(image_file);
         dest.writeValue(image_name);
         dest.writeValue(password);
+        dest.writeValue(level);
     }
 
     public int describeContents() {

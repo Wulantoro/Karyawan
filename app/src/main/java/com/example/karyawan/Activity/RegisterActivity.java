@@ -104,7 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Gson gson;
 
     private static String TAG = RegisterActivity.class.getSimpleName();
-    private String levId = "";
+    private String levId = "0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -543,6 +543,7 @@ public class RegisterActivity extends AppCompatActivity {
                 jsonObject.put("nama_krw", etnama.getText().toString());
                 jsonObject.put("username_krw", etusername.getText().toString());
                 jsonObject.put("password", etpassword.getText().toString());
+                jsonObject.put("level", levId);
                 jsonObject.put("divisi", spdivisi.getItemAtPosition(spdivisi.getSelectedItemPosition()).toString());
                 jsonObject.put("telp_krw", ettelp.getText().toString());
                 jsonObject.put("alamat_krw", etalamat.getText().toString());
@@ -580,7 +581,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                         @Override
                         public void onError(ANError anError) {
-                            Toast.makeText(getApplicationContext(), "Gagal menambah data", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Gagal menambah data "+ anError, Toast.LENGTH_SHORT).show();
 
                         }
                     });

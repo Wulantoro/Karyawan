@@ -14,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.ManagerActivity"></activity>
+        <activity android:name=".Activity.DetApprCutiActivity"></activity>
+        <activity android:name=".Activity.ApprovalCutiMgrActivity" />
+        <activity android:name=".Activity.HomeMgrActivity" />
         <activity android:name=".Activity.DetailCutiActivity" />
         <activity android:name=".Activity.FormCutiActivity" />
         <activity android:name=".Activity.FormActivity" />

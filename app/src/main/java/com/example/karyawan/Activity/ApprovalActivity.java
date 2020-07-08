@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -19,6 +21,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ApprovalActivity extends AppCompatActivity {
+
+    public SharedPreferences pref, prf;
+
+    String id_krw;
+    String divisi;
 
     private String TAG = ApprovalActivity.class.getSimpleName();
 
@@ -35,6 +42,14 @@ public class ApprovalActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_approval);
+
+        pref = getSharedPreferences("Id_krw", MODE_PRIVATE);
+        id_krw = pref.getString("id_krw", null);
+        Log.e(TAG, "id kar " + id_krw);
+
+        pref = getSharedPreferences("Divisi", MODE_PRIVATE);
+        divisi = pref.getString("divisi", null);
+        Log.e(TAG, "divisi " + divisi);
 
         rvMenu = findViewById(R.id.rvMenu);
         parentLayout = findViewById(R.id.parentLayout);
@@ -75,7 +90,20 @@ public class ApprovalActivity extends AppCompatActivity {
     }
 
     private void intentToCuti() {
-        intent = new Intent(getApplicationContext(), CutiActivity.class);
+        intent = new Intent(getApplicationContext(), ApprovalCutiMgrActivity.class);
+
+        pref = getSharedPreferences("Id_krw", MODE_PRIVATE);
+        id_krw =pref.getString("id_krw", null);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("id_krw", id_krw);
+        editor.commit();
+
+        pref = getSharedPreferences("Divisi", MODE_PRIVATE);
+        divisi = pref.getString("divisi", null);
+        SharedPreferences.Editor editor1 = pref.edit();
+        editor.putString("divisi", divisi);
+        editor1.commit();
+
         startActivity(intent);
     }
 
