@@ -114,6 +114,22 @@
 
             </RelativeLayout>
 
+            <RelativeLayout
+                android:id="@+id/rellev"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30mdp"
+                android:layout_marginTop="@dimen/_15mdp"
+                android:background="@drawable/bordertrans">
+
+                <Spinner
+                    android:id="@+id/splevel"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35mdp"
+                    android:gravity="center_vertical"
+                    android:spinnerMode="dropdown"/>
+
+            </RelativeLayout>
+
             <LinearLayout
                 android:id="@+id/LlBirthday"
                 android:layout_width="match_parent"

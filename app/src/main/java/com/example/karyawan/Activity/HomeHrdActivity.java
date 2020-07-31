@@ -1,8 +1,10 @@
 package com.example.karyawan.Activity;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -91,8 +93,14 @@ public class HomeHrdActivity extends AppCompatActivity {
         ivapprove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ApprovalActivity.class);
-//                pref = getSharedPreferences("Id_krw", )
+                Intent intent = new Intent(getApplicationContext(), ApprovalHrdActivity.class);
+
+                pref = getSharedPreferences("Id_krw", MODE_PRIVATE);
+                id_krw =pref.getString("id_krw", null);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("id_krw", id_krw);
+                editor.commit();
+
                 startActivity(intent);
             }
         });

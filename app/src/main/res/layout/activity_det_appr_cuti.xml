@@ -81,19 +81,12 @@
                         android:textSize="@dimen/_12font_mdp"
                         android:text="@string/lama_hari"/>
 
-                    <TextView
-                        android:id="@+id/tvsts"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/status"
-                        android:layout_marginTop="@dimen/_10mdp"
-                        android:layout_below="@id/tvlama"/>
 
                     <TextView
                         android:id="@+id/tvket"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/tvsts"
+                        android:layout_below="@id/tvlama"
                         android:layout_marginTop="@dimen/_10mdp"
                         android:textSize="@dimen/_12font_mdp"
                         android:text="@string/ket"/>
@@ -195,20 +188,13 @@
                         android:textSize="@dimen/_12font_mdp"
                         android:text="@string/lama_hari"/>
 
-                    <TextView
-                        android:id="@+id/tvsts1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/status"
-                        android:textSize="@dimen/_12font_mdp"
-                        android:layout_marginTop="@dimen/_10mdp"
-                        android:layout_below="@id/tvlama1"/>
+
 
                     <TextView
                         android:id="@+id/tvket1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/tvsts1"
+                        android:layout_below="@id/tvlama1"
                         android:layout_marginTop="@dimen/_10mdp"
                         android:textSize="@dimen/_12font_mdp"
                         android:text="@string/ket"/>

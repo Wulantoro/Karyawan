@@ -255,7 +255,7 @@
                         android:layout_height="wrap_content"/>
 
                     <TextView
-                        android:text="Me"
+                        android:text=""
                         android:layout_gravity="center_horizontal"
                         android:textSize="18sp"
                         android:textStyle="bold"

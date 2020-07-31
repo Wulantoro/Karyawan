@@ -15,4 +15,5 @@
     <string name="div">Divisi</string>
     <string name="ket">Keterangan</string>
     <string name="acc_mgr">Approve Manager</string>
+    <string name="acc_hrd">Approve HRD</string>
 </resources>

@@ -191,78 +191,78 @@
 
         <!--        coloumn-->
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:layout_marginBottom="@dimen/_15mdp"
-            android:layout_marginLeft="@dimen/_15mdp"
-            android:layout_marginRight="@dimen/_15mdp"
-            app:cardElevation="@dimen/_8mdp"
-            app:cardCornerRadius="@dimen/_8mdp"
-            >
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_columnWeight="1"-->
+<!--            android:layout_rowWeight="1"-->
+<!--            android:layout_marginBottom="@dimen/_15mdp"-->
+<!--            android:layout_marginLeft="@dimen/_15mdp"-->
+<!--            android:layout_marginRight="@dimen/_15mdp"-->
+<!--            app:cardElevation="@dimen/_8mdp"-->
+<!--            app:cardCornerRadius="@dimen/_8mdp"-->
+<!--            >-->
 
-            <LinearLayout
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+<!--            <LinearLayout-->
+<!--                android:layout_gravity="center_horizontal|center_vertical"-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content">-->
 
-                <ImageView
-                    android:src="@drawable/user"
-                    android:layout_width="@dimen/_70mdp"
-                    android:layout_height="@dimen/_70mdp"/>
+<!--                <ImageView-->
+<!--                    android:src="@drawable/user"-->
+<!--                    android:layout_width="@dimen/_70mdp"-->
+<!--                    android:layout_height="@dimen/_70mdp"/>-->
 
-                <TextView
-                    android:text="Profil"
-                    android:layout_gravity="center_horizontal"
-                    android:textSize="@dimen/_15font_mdp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="@dimen/_3mdp"
-                    android:layout_width="wrap_content"
-                    android:textColor="@color/black"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+<!--                <TextView-->
+<!--                    android:text="Profil"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:textSize="@dimen/_15font_mdp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:layout_marginTop="@dimen/_3mdp"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:layout_height="wrap_content"/>-->
+<!--            </LinearLayout>-->
+<!--        </androidx.cardview.widget.CardView>-->
 
 
-        <!--        coloumn-->
+<!--        &lt;!&ndash;        coloumn&ndash;&gt;-->
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:layout_marginBottom="@dimen/_15mdp"
-            android:layout_marginLeft="@dimen/_15mdp"
-            android:layout_marginRight="@dimen/_15mdp"
-            app:cardElevation="@dimen/_8mdp"
-            app:cardCornerRadius="@dimen/_8mdp"
-            >
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:layout_columnWeight="1"-->
+<!--            android:layout_rowWeight="1"-->
+<!--            android:layout_marginBottom="@dimen/_15mdp"-->
+<!--            android:layout_marginLeft="@dimen/_15mdp"-->
+<!--            android:layout_marginRight="@dimen/_15mdp"-->
+<!--            app:cardElevation="@dimen/_8mdp"-->
+<!--            app:cardCornerRadius="@dimen/_8mdp"-->
+<!--            >-->
 
-            <LinearLayout
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+<!--            <LinearLayout-->
+<!--                android:layout_gravity="center_horizontal|center_vertical"-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content">-->
 
-                <ImageView
-                    android:src="@drawable/user"
-                    android:layout_width="@dimen/_70mdp"
-                    android:layout_height="@dimen/_70mdp"/>
+<!--                <ImageView-->
+<!--                    android:src="@drawable/user"-->
+<!--                    android:layout_width="@dimen/_70mdp"-->
+<!--                    android:layout_height="@dimen/_70mdp"/>-->
 
-                <TextView
-                    android:text="Profil"
-                    android:layout_gravity="center_horizontal"
-                    android:textSize="@dimen/_15font_mdp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="@dimen/_3mdp"
-                    android:layout_width="wrap_content"
-                    android:textColor="@color/black"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+<!--                <TextView-->
+<!--                    android:text="Profil"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:textSize="@dimen/_15font_mdp"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:layout_marginTop="@dimen/_3mdp"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:layout_height="wrap_content"/>-->
+<!--            </LinearLayout>-->
+<!--        </androidx.cardview.widget.CardView>-->
     </GridLayout>
 </LinearLayout>
 

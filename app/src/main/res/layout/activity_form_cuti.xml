@@ -168,7 +168,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/_12font_mdp"
                     android:layout_marginLeft="@dimen/_5mdp"
-                    android:text="5"/>
+                    android:text=""/>
 
             </LinearLayout>
 

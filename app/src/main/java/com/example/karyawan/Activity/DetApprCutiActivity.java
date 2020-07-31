@@ -32,7 +32,7 @@ public class DetApprCutiActivity extends AppCompatActivity {
     private TextView tvmulai1;
     private TextView tvselesai1;
     private TextView tvlama1;
-    private TextView tvsts1;
+
     private TextView tvket1;
     private Spinner spaprmgr;
     private Button btnSimpan;
@@ -40,6 +40,7 @@ public class DetApprCutiActivity extends AppCompatActivity {
     private Cuti cuti;
 
     String id_cuti;
+    int id_kar;
     private String[] acc_mgr = {
             "--Pilih--",
             "Tolak",
@@ -59,7 +60,7 @@ public class DetApprCutiActivity extends AppCompatActivity {
         tvmulai1 = findViewById(R.id.tvmulai1);
         tvselesai1 = findViewById(R.id.tvselesai1);
         tvlama1 = findViewById(R.id.tvlama1);
-        tvsts1 = findViewById(R.id.tvsts1);
+
         tvket1 = findViewById(R.id.tvket1);
         spaprmgr = findViewById(R.id.spaprmgr);
         btnSimpan = findViewById(R.id.btnSimpan);
@@ -71,9 +72,10 @@ public class DetApprCutiActivity extends AppCompatActivity {
         tvmulai1.setText(cuti.getTgl_mulai());
         tvselesai1.setText(cuti.getTgl_selesai());
         tvlama1.setText(cuti.getLama_cuti());
-        tvsts1.setText(cuti.getStatus());
         tvket1.setText(cuti.getAlasan());
         id_cuti = cuti.getId_cuti();
+        id_kar = Integer.parseInt(cuti.getId_kar());
+        Log.e(TAG, "id kar " + id_kar);
 
         spaprmgr.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, acc_mgr));
 
@@ -91,12 +93,13 @@ public class DetApprCutiActivity extends AppCompatActivity {
         try {
             JSONArray newArr = new JSONArray();
             jsonObject.put("id_cuti", id_cuti);
+            jsonObject.put("id_kar", id_kar);
             jsonObject.put("jns_cuti", tvjenis1.getText().toString());
             jsonObject.put("tgl_mulai", tvmulai1.getText().toString());
             jsonObject.put("tgl_selesai", tvselesai1.getText().toString());
             jsonObject.put("lama_cuti", tvlama1.getText().toString());
             jsonObject.put("alasan", tvket1.getText().toString() );
-            jsonObject.put("status", tvsts1.getText().toString());
+//            jsonObject.put("status", tvsts1.getText().toString());
             jsonObject.put("acc", spaprmgr.getItemAtPosition(spaprmgr.getSelectedItemPosition()).toString());
 
             newArr.put(jsonObject);
@@ -129,8 +132,5 @@ public class DetApprCutiActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Cuti gagal diapprove", Toast.LENGTH_SHORT).show();
                     }
                 });
-
-
-
     }
 }

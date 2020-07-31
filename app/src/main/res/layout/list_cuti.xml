@@ -62,13 +62,16 @@
                     android:layout_marginTop="@dimen/_10mdp"
                     android:layout_below="@id/tvnama" />
 
+
                 <TextView
                     android:id="@+id/tvsts"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/status"
                     android:layout_marginTop="@dimen/_10mdp"
-                    android:layout_below="@id/tvtglinput"/>
+                    android:layout_below="@id/tvnama" />
+
+
 
 
             </RelativeLayout>

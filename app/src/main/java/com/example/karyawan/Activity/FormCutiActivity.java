@@ -228,7 +228,7 @@ public class FormCutiActivity extends AppCompatActivity {
             jsonObject.put("tgl_selesai", etTglselesai.getText().toString());
             jsonObject.put("lama_cuti", tvlama.getText().toString());
             jsonObject.put("alasan", keterangan.getText().toString());
-            jsonObject.put("status", "menunggu");
+//            jsonObject.put("status", "menunggu");
 
             jsonArray.put(jsonObject);
 

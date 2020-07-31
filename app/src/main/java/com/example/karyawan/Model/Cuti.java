@@ -17,6 +17,7 @@ public class Cuti implements Parcelable {
     private String jns_cuti;
     private String divisi;
     private String alasan;
+    private String acc;
     private String created_date;
     public final static Parcelable.Creator<Cuti> CREATOR = new Creator<Cuti>() {
 
@@ -46,6 +47,7 @@ public class Cuti implements Parcelable {
         this.jns_cuti = ((String) in.readValue((String.class.getClassLoader())));
         this.divisi = ((String) in.readValue((String.class.getClassLoader())));
         this.alasan = ((String) in.readValue((String.class.getClassLoader())));
+        this.acc = ((String) in.readValue((Object.class.getClassLoader())));
         this.created_date = ((String) in.readValue((String.class.getClassLoader())));
     }
 
@@ -144,6 +146,14 @@ public class Cuti implements Parcelable {
         this.alasan = alasan;
     }
 
+    public String getAcc() {
+        return acc;
+    }
+
+    public void setAcc(String acc) {
+        this.acc = acc;
+    }
+
     public void setCreated_date(String created_date) {
         this.created_date = created_date;
     }
@@ -160,6 +170,7 @@ public class Cuti implements Parcelable {
         dest.writeValue(jns_cuti);
         dest.writeValue(divisi);
         dest.writeValue(alasan);
+        dest.writeValue(acc);
         dest.writeValue(created_date);
     }
 

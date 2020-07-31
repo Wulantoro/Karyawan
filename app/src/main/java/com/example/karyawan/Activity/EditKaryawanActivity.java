@@ -1,5 +1,6 @@
 package com.example.karyawan.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -43,6 +44,7 @@ import com.example.karyawan.ImagePicker.RxImagePicker;
 import com.example.karyawan.ImagePicker.Sources;
 import com.example.karyawan.Model.Divisi;
 import com.example.karyawan.Model.Karyawan;
+import com.example.karyawan.Model.Level;
 import com.example.karyawan.R;
 import com.example.karyawan.Utils.GlobalVars;
 import com.google.gson.Gson;
@@ -102,6 +104,7 @@ public class EditKaryawanActivity extends AppCompatActivity {
     private RadioButton rbgender, rbmale, rbfemale;
     private Button btnsimpan;
     private Spinner spdivisi;
+    private Spinner splevel;
     SpinnerAdapter spinAdapter;
 
     private Gson gson;
@@ -113,6 +116,7 @@ public class EditKaryawanActivity extends AppCompatActivity {
     private String tempId = "";
     private String namadiv = "";
     private String nmDiv;
+    private String levId;
     private static final int PICK_IMAGE_FILE = 1;
 
     private static final String TAG = EditKaryawanActivity.class.getName();
@@ -184,7 +188,9 @@ public class EditKaryawanActivity extends AppCompatActivity {
 
         //get Divisi
         loadDiv();
-//        getDivisi();
+
+//        get Level;
+        loadLevel();
 
         loadProfil();
     }
@@ -499,7 +505,79 @@ public class EditKaryawanActivity extends AppCompatActivity {
 
             }
         });
+    }
 
+    private void loadLevel() {
+        AndroidNetworking.get(GlobalVars.BASE_IP + "level")
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        List<Level> result = new ArrayList<>();
+
+                        try {
+                            if (result != null)
+                                result.clear();
+
+                            String message = response.getString("message");
+
+                            if (message.equals("Level ditemukan")) {
+                                String records = response.getString("data");
+
+                                JSONArray jsonArray = new JSONArray(records);
+
+                                if (jsonArray.length() > 0) {
+                                    for (int i = 0; i < jsonArray.length(); i++) {
+                                        Level level = gson.fromJson(jsonArray.getJSONObject(i).toString(), Level.class);
+                                        result.add(level);
+                                    }
+                                    setLevel(result);
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(EditKaryawanActivity.this, "JSONException " + e, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        Toast.makeText(EditKaryawanActivity.this, "ANError" + anError, Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void setLevel(final List<Level> levelList) {
+        ArrayAdapter<Level> voteTypeAdapter = new ArrayAdapter<Level>(getApplicationContext(), R.layout.level_spinner, levelList) {
+
+            @Override
+            public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                TextView textView = (TextView) super.getDropDownView(position, convertView, parent);
+                textView.setText(levelList.get(position).getKd_level());
+                return textView;
+            }
+
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                TextView textView = (TextView) super.getView(position, convertView, parent);
+                textView.setText(levelList.get(position).getKd_level());
+                return textView;
+            }
+        };
+        splevel.setAdapter(voteTypeAdapter);
+        splevel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                levId = levelList.get(position).getId_level();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     private void DateSpinner() {
@@ -621,6 +699,7 @@ public class EditKaryawanActivity extends AppCompatActivity {
             jsonObject.put("username_krw", etusername.getText().toString());
             jsonObject.put("password", etpassword.getText().toString());
             jsonObject.put("divisi", spdivisi.getItemAtPosition(spdivisi.getSelectedItemPosition()).toString());
+            jsonObject.put("level", splevel.getItemAtPosition(splevel.getSelectedItemPosition()).toString());
             jsonObject.put("telp_krw", ettelp.getText().toString());
             jsonObject.put("alamat_krw", etalamat.getText().toString());
             jsonObject.put("gender_krw", rbgender.getText().toString());

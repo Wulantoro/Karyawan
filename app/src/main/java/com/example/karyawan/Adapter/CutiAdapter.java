@@ -43,7 +43,7 @@ public class CutiAdapter extends RecyclerView.Adapter<CutiAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull CutiAdapter.ViewHolder holder, int position) {
         final Cuti cuti = list.get(holder.getAdapterPosition());
         holder.tvnama1.setText(list.get(position).getNama_krw());
-        holder.tvsts1.setText(list.get(position).getStatus());
+        holder.tvsts1.setText(list.get(position).getAcc());
         holder.tvlama.setText(list.get(position).getLama_cuti());
 
         Glide.with(context)

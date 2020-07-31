@@ -389,8 +389,6 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-
-
     private void loadDiv() {
 
         Log.e(TAG, "ip >> " + GlobalVars.BASE_IP + "divisi");

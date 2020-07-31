@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
 
                                                 startActivity(intent);
 
-                                            } else{
+                                            } else if (karyawan.getLevel().equalsIgnoreCase("2") || karyawan.getLevel().equalsIgnoreCase("3")){
                                                 Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                                                 pref = getSharedPreferences("Id_krw", MODE_PRIVATE);
                                                 id_krw = karyawan.getIdKrw();
@@ -188,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
 
                         @Override
                         public void onError(ANError anError) {
-                            Toast.makeText(MainActivity.this, "Gagal Login = " + anError, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Gagal Login, Username atau Password salah ", Toast.LENGTH_SHORT).show();
                             Log.e(TAG, "error = " + anError);
 
                         }
